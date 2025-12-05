@@ -1,0 +1,57 @@
+table {
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border-bottom: 2px solid #ccc;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.container {
+  background-color: rgb(140, 194, 196);
+  height: 400px;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background-color: white;
+  height: 80%;
+  width: 80%;
+}
+
+.shopping-cart {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+}
+
+.shopping-cart p {
+  margin: 0px;
+}
+
+.shopping-cart h4 {
+  margin: 0px;
+}
+
+.shopping-cart img {
+  width: 50px;
+  height: 40px;
+}
+
+.shopping-cart tbody td:nth-child(n + 3):nth-child(-n + 5),
+th {
+  text-align: right;
+}
+
+.shopping-cart tbody tr:last-child {
+  border-bottom: none;
+}

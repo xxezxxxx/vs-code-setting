@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body style="background: lightgray">
+    <div class="container">
+      <div class="header">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">집꾸미기</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">스토어</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">시공견적</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="content mt-3">
+        <input type="search" name="" id="search" placeholder="검색어입력" />
+        <div class="item-card-box"></div>
+        <div class="cart-box mt-3">
+          <div class="card">
+            <h5 class="card-header">장바구니</h5>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <div class="cart-space"><p class="no-drag">여기로 드래그</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      async function getProducts() {
+        return $.get(
+          "http://127.0.0.1:5500/javascripts/test23/data/store.json"
+        );
+      }
+      async function renderEach(html) {
+        $(".item-card-box").eq(0).append(`
+          ${html}
+        `);
+      }
+    </script>
+
+    <script>
+      async function renderList() {
+        const data = await getProducts();
+        const items = data.products;
+        $(".item-card-box").eq(0).html("");
+        items.forEach(function (item, index) {
+          $(".item-card-box").eq(0).append(`
+            <div class="card" data-index="${index}" draggable="true" style="width: 18rem;">
+                <img draggable="false" src="http://127.0.0.1:5500/javascripts/test23/data/${item.photo}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${item.title}</h5>
+                    <p class="card-text">${item.brand}</p>
+                    <p class="card-text">가격 : ${item.price}</p>
+                    <a href="#" data-id="${index}" class="btn btn-primary" draggable="false">담기</a>
+                </div>
+            </div>
+          `);
+        });
+        const newCards = document.querySelectorAll(".item-card-box .card");
+        return newCards;
+      }
+      renderList();
+
+      document.addEventListener("DOMContentLoaded", function () {
+        $("#search").on("input", function (e) {
+          const currentValue = $(this).val();
+          const items = $(".item-card-box .card");
+          items.each(function (index, data) {
+            const $item = $(data);
+            if (data.textContent.includes(currentValue)) {
+              applyHighlight($item, currentValue);
+              $item.show();
+            } else {
+              $item.hide();
+            }
+          });
+        });
+        //
+      });
+    </script>
+    <script>
+      /**
+       * 주어진 jQuery 요소 내부에서 특정 키워드를 찾아 하이라이팅 처리합니다.
+       * @param {jQuery} $element - 하이라이팅을 적용할 상품 카드의 jQuery 객체 ($('.card'))
+       * @param {string} keyword - 검색 키워드
+       */
+      function applyHighlight($element, keyword) {
+        if (!keyword.trim()) {
+          // 키워드가 없으면 하이라이팅 제거 (원본 텍스트 복구)
+          $element.find(".card-title, .card-text").each(function () {
+            // .text()로 순수 텍스트를 가져와서 .html()로 넣어주면 모든 <span>이 제거됩니다.
+            $(this).html($(this).text());
+          });
+          return;
+        }
+
+        // 1. 하이라이팅 대상 선택자: 제목(.card-title)과 브랜드(.card-text)
+        $element.find(".card-title, .card-text").each(function () {
+          const $target = $(this);
+          const originalText = $target.text(); // 현재 표시된 순수 텍스트 가져오기
+
+          // 2. 정규 표현식 생성: 대소문자 무시, 전역 검색
+          const regex = new RegExp(keyword, "gi");
+
+          // 3. 치환 문자열: <span style="background-color: yellow;">$&</span>
+          const replacementHTML =
+            '<span style="background-color: yellow;">$&</span>';
+
+          // 4. 텍스트를 치환하고 HTML로 다시 삽입
+          const newHTML = originalText.replace(regex, replacementHTML);
+
+          $target.html(newHTML);
+        });
+      }
+    </script>
+
+    <script>
+      async function actionDrag() {
+        const newCards = await renderList();
+        const cartBox = document.querySelector(".cart-box");
+
+        const button = document.querySelectorAll("[data-id]");
+
+        button.addEventListener("click", function () {
+          button.forEach(function (btn, index) {
+            const card = document.querySelector(`[data-index="${index}"]`);
+            const cartSpace = document.querySelector(".cart-space");
+
+            const img = card.querySelector(".card-img-top").src;
+            const title = card.querySelector(".card-title").textContent;
+            const brand = card.querySelectorAll(".card-text")[0].textContent;
+            const price = card.querySelectorAll(".card-text")[1].textContent;
+
+            const priceCleaned = price.replace(/[^\d\.]/g, "");
+            const priceNumber = parseInt(priceCleaned, 10);
+
+            console.log(img);
+
+            // <h5 class="card-title">${item.title}</h5>
+            // <p class="card-text">${item.brand}</p>
+            // <p class="card-text">가격 : ${item.price}</p>
+
+            cartSpace.insertAdjacentHTML(
+              "beforeend",
+              `
+            <div class="card" draggable="true" style="width: 25%; height:80%; max-width:20%;">
+                <img draggable="false" src="${img}" class="card-img-top" alt="..." style=" width:auto; height:100px">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size:13px; white-space: nowrap; text-align:center; margin:auto">${title}</h5>
+                    <p class="card-text" style="font-size:10px; text-align:center">${brand}</p>
+                    <p class="card-text" style="font-size:12px; text-align:center">${priceNumber}</p>
+                </div>
+            </div>
+            `
+            );
+          });
+        });
+
+        console.log(button);
+
+        newCards.forEach(function (card, index) {
+          card.addEventListener("dragstart", function (e) {
+            e.dataTransfer.setData("application/json", index);
+          });
+        });
+
+        cartBox.addEventListener("dragover", function (e) {
+          e.preventDefault();
+        });
+
+        cartBox.addEventListener("drop", function (e) {
+          e.preventDefault();
+          const retrievedIndex = e.dataTransfer.getData("application/json");
+          const card = document.querySelector(
+            `[data-index="${retrievedIndex}"]`
+          );
+          const cartSpace = document.querySelector(".cart-space");
+
+          const img = card.querySelector(".card-img-top").src;
+          const title = card.querySelector(".card-title").textContent;
+          const brand = card.querySelectorAll(".card-text")[0].textContent;
+          const price = card.querySelectorAll(".card-text")[1].textContent;
+
+          const priceCleaned = price.replace(/[^\d\.]/g, "");
+          const priceNumber = parseInt(priceCleaned, 10);
+
+          console.log(img);
+
+          // <h5 class="card-title">${item.title}</h5>
+          // <p class="card-text">${item.brand}</p>
+          // <p class="card-text">가격 : ${item.price}</p>
+
+          cartSpace.insertAdjacentHTML(
+            "beforeend",
+            `
+            <div class="card" draggable="true" style="width: 25%; height:80%; max-width:20%;">
+                <img draggable="false" src="${img}" class="card-img-top" alt="..." style=" width:auto; height:100px">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size:13px; white-space: nowrap; text-align:center; margin:auto">${title}</h5>
+                    <p class="card-text" style="font-size:10px; text-align:center">${brand}</p>
+                    <p class="card-text" style="font-size:12px; text-align:center">${priceNumber}</p>
+                </div>
+            </div>
+            `
+          );
+
+          if (cartSpace.querySelector(".card")) {
+            document.querySelector(".no-drag").classList.add("hidden");
+          }
+        });
+      }
+
+      actionDrag();
+    </script>
+
+    <script>
+      function dragNormal() {
+        const retrievedIndex = e.dataTransfer.getData("application/json");
+        const card = document.querySelector(`[data-index="${retrievedIndex}"]`);
+        const cartSpace = document.querySelector(".cart-space");
+
+        const img = card.querySelector(".card-img-top").src;
+        const title = card.querySelector(".card-title").textContent;
+        const brand = card.querySelectorAll(".card-text")[0].textContent;
+        const price = card.querySelectorAll(".card-text")[1].textContent;
+
+        const priceCleaned = price.replace(/[^\d\.]/g, "");
+        const priceNumber = parseInt(priceCleaned, 10);
+
+        console.log(img);
+
+        // <h5 class="card-title">${item.title}</h5>
+        // <p class="card-text">${item.brand}</p>
+        // <p class="card-text">가격 : ${item.price}</p>
+
+        cartSpace.insertAdjacentHTML(
+          "beforeend",
+          `
+            <div class="card" draggable="true" style="width: 25%; height:80%; max-width:20%;">
+                <img draggable="false" src="${img}" class="card-img-top" alt="..." style=" width:auto; height:100px">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size:13px; white-space: nowrap; text-align:center; margin:auto">${title}</h5>
+                    <p class="card-text" style="font-size:10px; text-align:center">${brand}</p>
+                    <p class="card-text" style="font-size:12px; text-align:center">${priceNumber}</p>
+                </div>
+            </div>
+            `
+        );
+
+        if (cartSpace.querySelector(".card")) {
+          document.querySelector(".no-drag").classList.add("hidden");
+        }
+      }
+    </script>
+  </body>
+</html>

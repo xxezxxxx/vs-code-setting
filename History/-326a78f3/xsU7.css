@@ -1,0 +1,62 @@
+:root {
+  --color-border-main: #cccccc;
+  --color-bg-main: #f3f3f3;
+  /* 검색 아이콘 색상을 위해 변수 추가 */
+  --color-icon: #555555;
+}
+
+body {
+  background: rgb(235, 235, 235);
+}
+
+.left-content {
+  width: 20%;
+  border: 2px solid var(--color-border-main);
+  background: var(--color-bg-main);
+  border-radius: 4px;
+  box-shadow: 4px 4px 4px 4px #a1a1a1;
+  padding: 10px;
+}
+
+.search-bar-wrapper {
+  position: relative;
+}
+
+#eqp-search {
+  width: 100%;
+  padding: 8px 10px 8px 35px;
+  border: 1px solid var(--color-border-main);
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  height: 40px;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-main);
+  border-radius: var(--design-input-radius);
+  border: none;
+  outline: none;
+  box-shadow: var(--design-shadow-main);
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  padding: 0 20px 0 50px;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: var(--color-icon);
+  pointer-events: none;
+  font-size: 16px;
+}
+
+#search-bar::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+#search-bar:focus {
+  box-shadow: 0 0 0 2px var(--color-primary-accent),
+    0 4px 10px rgba(0, 0, 0, 0.5);
+}

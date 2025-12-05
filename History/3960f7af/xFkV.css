@@ -1,0 +1,196 @@
+body {
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.go-btn {
+  color: white;
+  background: rgb(60, 59, 59);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.top-view {
+  position: relative;
+  background: linear-gradient(to bottom, #4f9aff, #03c75a);
+  width: 100%;
+  height: 400px;
+}
+
+.top-view-box {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+}
+
+.top-view-box h2 {
+  color: white;
+  font-weight: 550;
+}
+
+.top-view-box p {
+  color: white;
+  font-size: 14px;
+}
+
+.top-view-box button {
+  height: 40px;
+  width: 100px;
+}
+
+.top-view img {
+  position: absolute;
+  width: 300px;
+  bottom: 0px;
+  right: 100px;
+}
+
+.second-view {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  align-items: center;
+}
+
+.second-view h4 {
+  margin: 0px;
+}
+
+.second-view button {
+  height: 35px;
+  width: 120px;
+}
+
+.second-view p {
+  font-weight: 550;
+}
+
+.third-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+  background: #03c75a;
+  color: white;
+}
+
+.third-view-go-box {
+  display: flex;
+  gap: 40px;
+}
+
+.third-view-go-box i {
+  background: white;
+  color: #03c75a;
+  border-radius: 100%;
+  font-size: 48px;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.third-view-go-box div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.third-view-go-box h4 {
+  margin: 8px;
+}
+
+.third-view-go-box p {
+  margin: 4px;
+}
+
+.forth-view {
+  height: 800px;
+  padding: 40px;
+}
+
+.forth-view-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: white;
+}
+
+.forth-view-box-each {
+  position: relative;
+  width: 400px;
+  height: 250px;
+}
+
+.forth-view-box-each img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.forth-view-box-each h3 {
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+.forth-view-box-each p {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 13px;
+}
+
+.abc:hover .img-frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 14px solid white;
+  transition: all 0.2s;
+}
+
+@media screen and (max-width: 768px) {
+  .top-view-box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .top-view-box h2 {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .top-view-box p {
+    color: white;
+    font-size: 10px;
+  }
+
+  .top-view-box button {
+    height: 40px;
+    width: 100px;
+  }
+
+  .top-view img {
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .third-view-go-box p {
+    font-size: 10px;
+    margin: 4px;
+  }
+}

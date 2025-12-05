@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="card-group container">
+      <div class="card">
+        <img src="https://placehold.co/600" />
+        <div class="card-body">
+          <h5>Card title</h5>
+          <p>가격 : 70000</p>
+          <button class="btn btn-danger">주문하기</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://placehold.co/600" />
+        <div class="card-body">
+          <h5>Card title</h5>
+          <p>가격 : 70000</p>
+          <button class="btn btn-danger">주문하기</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://placehold.co/600" />
+        <div class="card-body">
+          <h5>Card title</h5>
+          <p>가격 : 70000</p>
+          <button class="btn btn-danger">주문하기</button>
+        </div>
+      </div>
+    </div>
+
+    <form class="container my-5 form-group" id="select-products">
+      <p>상품선택</p>
+      <select class="form-select mt-2">
+        <option>모자</option>
+        <option>셔츠</option>
+        <option>바지</option>
+      </select>
+    </form>
+
+    <form class="container my-5 form-group" id="select-size">
+      <select class="form-select mt-2">
+        <option>95</option>
+        <option>100</option>
+      </select>
+    </form>
+
+    <div id="test-box"></div>
+
+    <script>
+      var products = [
+        { id: 0, price: 70000, title: "Blossom Dress" },
+        { id: 1, price: 50000, title: "Springfield Shirt" },
+        { id: 2, price: 60000, title: "Black Monastery" },
+      ];
+
+      for (const product of products) {
+        const title = document
+          .getElementsByClassName("card-body")
+          [product.id].querySelector(".card-body h5");
+
+        const price = document
+          .getElementsByClassName("card-body")
+          [product.id].querySelector(".card-body p");
+
+        title.textContent = product.title;
+        price.textContent = "가격 : " + product.price;
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      //   var a = document.createElement("p");
+      //   a.innerHTML = "안녕";
+
+      //   document.querySelector("#test-box").appendChild(a);
+
+      var 템플릿 = "<p>안녕하세요</p>";
+
+      document
+        .querySelector("#test-box")
+        .insertAdjacentHTML("beforeend", 템플릿);
+      document
+        .querySelector("#test-box")
+        .insertAdjacentHTML("beforeend", 템플릿);
+    </script>
+
+    <script>
+      var pants = [28, 30, 32, 34];
+      var shirts = [95, 100, 105, 110];
+      $("#select-size").hide();
+      document
+        .getElementById("select-products")
+        .addEventListener("change", function (e) {
+          let index = e.target.selectedIndex;
+          let a = e.target.options[index].textContent;
+
+          if (a == "셔츠") {
+            $("#select-size").show();
+            $(".form-select").eq(1).html("");
+
+            shirts.forEach(function (data) {
+              $(".form-select").eq(1).append(`<option>${data}</option>`);
+            });
+          } else if (a == "바지") {
+            $("#select-size").show();
+            $(".form-select").eq(1).html("");
+
+            pants.forEach(function (e) {
+              $(".form-select").eq(1).append(`
+              <option>${e}</option>
+      `);
+            });
+          }
+
+          console.log(a);
+        });
+
+      var obj = { name: "kim", age: 20 };
+      for (var key in obj) {
+        console.log(obj[key]);
+      }
+    </script>
+
+    <script>
+      $.get("https://codingapple1.github.io/hello.txt").done(function (data) {
+        console.log(data);
+      });
+    </script>
+  </body>
+</html>

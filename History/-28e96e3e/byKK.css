@@ -1,0 +1,321 @@
+/* ==================================== */
+/* 0. CSS 변수 (Custom Properties) - 중앙 관리 영역 */
+/* ==================================== */
+
+:root {
+  /* --- A. 색상 팔레트 (Color Palette) --- */
+  --color-bg-page: #f9f9f9; /* 전체 페이지 배경 (밝은 회색/거의 화이트) */
+  --color-bg-container: #ffffff; /* 좌측 메뉴/컨텐츠 배경 (순수 화이트) */
+  --color-bg-input: #ffffff; /* 입력 필드 및 목록 배경 (순수 화이트) */
+
+  --color-text-main: #222222; /* 기본 텍스트 색상 (짙은 검정) */
+  --color-text-placeholder: #a0a0a0; /* 플레이스홀더 및 보조 텍스트 */
+  --color-text-highlight: #007bff; /* 섹션 라벨 등 강조 텍스트 (파란색 계열) */
+
+  --color-primary-accent: #4caf50; /* 선택/포커스 강조색 (Green Accent) */
+  --color-toggle-button: #007bff; /* 토글 버튼 색상 */
+
+  --color-border-subtle: #e2e2e2; /* 은은한 테두리 색상 (매우 밝은 회색) */
+  --color-border-sub: #f0f0f0; /* 서브 경계선, 호버 배경색 (매우 밝은 회색 호버) */
+  --color-scrollbar-thumb: #cccccc; /* 스크롤바 썸 (밝은 회색) */
+  --color-scrollbar-track: #f0f0f0; /* 스크롤바 트랙 (밝은 배경) */
+
+  /* --- B. 디자인 설정 (Design Settings) --- */
+  --design-border-radius: 8px; /* 일반적인 둥근 모서리 */
+  --design-input-radius: 12px; /* 입력 필드/목록 컨테이너 둥근 모서리 */
+
+  /* 그림자 설정 (밝은 모드에 적합) */
+  --design-shadow-main: 0 2px 4px rgba(0, 0, 0, 0.1); /* 입력 필드용 부드러운 그림자 */
+  --design-shadow-container: 0 4px 10px rgba(0, 0, 0, 0.08); /* 컨테이너용 은은하고 깔끔한 그림자 */
+}
+
+/* ==================================== */
+/* 1. 기본 스타일 및 레이아웃 설정 (Flex 기반) */
+/* ==================================== */
+
+body {
+  background-color: var(--color-bg-page);
+  font-family: Arial, sans-serif;
+  color: var(--color-text-main);
+  margin: 0;
+  padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Left/Right 컨테이너를 감싸는 Wrapper (전체 화면 차지) */
+.main-wrapper {
+  display: flex;
+  height: calc(100vh - 40px); /* body padding 20px * 2 제외 */
+  gap: 20px;
+  align-items: flex-start;
+  overflow: hidden; /* 전체 스크롤 방지 */
+}
+
+/* 왼쪽 컨텐츠 컨테이너 (접기/펴기 핵심) */
+.left-content {
+  width: 300px;
+  min-width: 300px;
+
+  border: 2px solid var(--color-border-subtle);
+  box-shadow: var(--design-shadow-container);
+
+  background: var(--color-bg-container);
+  border-radius: var(--design-border-radius);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  position: relative; /* 토글 버튼 기준점 */
+
+  /* ⭐⭐ 접기/펴기 전환 효과 ⭐⭐ */
+  transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out,
+    padding 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+/* ⭐⭐ 접힌 상태 스타일 (버튼만 남김) ⭐⭐ */
+.main-wrapper.collapsed .left-content {
+  width: 0;
+  min-width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  border-width: 0; /* 테두리 숨기기 */
+  box-shadow: none; /* 그림자 숨기기 */
+  /* overflow: hidden; <--- 버튼을 남기기 위해 이 속성을 제거함! */
+}
+
+.main-wrapper.collapsed {
+  overflow: hidden;
+}
+
+/* 오른쪽 컨텐츠 컨테이너 (차트 영역) */
+.right-content {
+  flex-grow: 1;
+  min-width: 600px;
+  background: var(--color-bg-container);
+  border: 2px solid var(--color-border-subtle);
+  box-shadow: var(--design-shadow-container);
+  border-radius: var(--design-border-radius);
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* 섹션 레이블 스타일 */
+.section-label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--color-text-highlight);
+}
+
+/* ==================================== */
+/* 1.1. 토글 버튼 스타일 (수정) */
+/* ==================================== */
+
+.toggle-button {
+  position: absolute; /* ⭐ .main-wrapper 기준 absolute ⭐ */
+  top: 50%;
+
+  /* right: -30px; <--- .left-content 기준이었던 기존값 제거 */
+  left: 100%; /* ⭐ .left-content의 너비(300px) + gap(20px)에서 버튼 너비(30px)를 고려한 위치 조정 ⭐ */
+
+  transform: translateY(-50%);
+  width: 30px;
+  height: 60px;
+  border: none;
+  background-color: var(--color-toggle-button);
+  color: white;
+  cursor: pointer;
+  z-index: 150; /* ⭐ z-index를 더 높게 설정 ⭐ */
+  border-radius: 0 var(--design-border-radius) var(--design-border-radius) 0;
+  font-size: 16px;
+  text-align: center;
+  padding: 0;
+  transition: all 0.3s ease-in-out; /* left 속성도 전환되도록 all로 변경 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ⭐⭐ 접힌 상태일 때 버튼 위치 조정 (핵심) ⭐⭐ */
+.main-wrapper.collapsed .toggle-button {
+  left: 20px; /* .left-content가 0이 되고, .main-wrapper의 gap 20px 위치로 버튼을 이동 */
+  border-radius: var(--design-border-radius);
+}
+/* ==================================== */
+/* 2. EQP 검색 영역 스타일 */
+/* ... (나머지 스타일은 동일) ... */
+/* ==================================== */
+
+.search-eqp {
+  width: 100%;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+  height: 40px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--color-text-placeholder);
+  z-index: 10;
+}
+
+/* 입력 필드 스타일 */
+#search-bar {
+  width: 100%;
+  height: 40px;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-main);
+  border-radius: var(--design-input-radius);
+  border: none;
+  outline: none;
+  box-shadow: var(--design-shadow-main);
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  padding: 0 20px 0 50px;
+  box-sizing: border-box;
+}
+
+#search-bar::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+#search-bar:focus {
+  box-shadow: 0 0 0 2px var(--color-primary-accent),
+    0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================================== */
+/* 3. 검색 결과 및 데이터 목록 컨테이너 스타일 */
+/* ==================================== */
+
+.search-results-container {
+  margin-top: 10px;
+  position: static;
+  width: 100%;
+  background-color: var(--color-bg-input);
+  border-radius: var(--design-input-radius);
+  box-shadow: var(--design-shadow-main);
+  max-height: 165px;
+  overflow-y: auto;
+  z-index: 5;
+  display: block;
+}
+
+/* 데이터 목록 (.eqp-data-list)의 컨테이너 */
+.eqp-data-list .search-results-container {
+  position: static;
+  margin-top: 0;
+  border-radius: var(--design-input-radius);
+  max-height: 150px;
+  display: block;
+}
+
+/* 개별 검색 결과 항목 스타일 */
+.search-result-item {
+  display: block;
+  padding: 10px 15px;
+  color: var(--color-text-main);
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: var(--design-border-radius);
+}
+
+/* 마우스 오버 시 스타일 */
+.search-result-item:hover {
+  background-color: var(--color-border-sub);
+}
+
+/* 스크롤바 스타일 */
+.search-results-container::-webkit-scrollbar {
+  width: 8px;
+}
+.search-results-container::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb);
+  border-radius: 4px;
+}
+.search-results-container::-webkit-scrollbar-track {
+  background-color: var(--color-scrollbar-track);
+  border-radius: var(--design-input-radius);
+}
+
+/* ==================================== */
+/* 5. 선택 상태 스타일 */
+/* ==================================== */
+
+.search-result-item.selected {
+  background-color: var(--color-primary-accent);
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: var(--design-border-radius);
+}
+
+.search-result-item:not(.selected):hover {
+  background-color: var(--color-border-sub);
+}
+
+/* ==================================== */
+/* 6. 데이터 입력 필드 스타일 (재사용) */
+/* ==================================== */
+
+#data-bar {
+  width: 100%;
+  height: 40px;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-main);
+  border-radius: var(--design-input-radius);
+  border: 1px solid var(--color-border-subtle);
+  outline: none;
+  box-shadow: var(--design-shadow-main);
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  padding: 0 20px 0 20px;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+/* ==================================== */
+/* 7. EQP 없음 메시지 스타일 */
+/* ==================================== */
+
+.search-result-item.no-click-item {
+  pointer-events: none;
+  opacity: 0.6;
+  background-color: transparent !important;
+  color: var(--color-text-placeholder) !important;
+}
+
+/* ==================================== */
+/* 8. 다중 차트 스타일 */
+/* ==================================== */
+
+/* 차트 컨테이너 (right-content 내부) */
+.chart-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* 차트 간의 세로 간격 */
+  align-items: center;
+}
+
+/* 개별 차트를 감싸는 Wrapper (각 차트의 크기 정의) */
+.sub-chart-wrapper {
+  width: 100%;
+  max-width: 95%; /* 컨테이너 대비 최대 너비 */
+  height: 280px; /* 각 차트의 높이 지정 */
+}

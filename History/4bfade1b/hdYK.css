@@ -1,0 +1,38 @@
+.bg-black {
+  padding: 20px;
+  background: black;
+  color: white;
+}
+
+.list {
+  padding-left: 20px;
+  text-align: left;
+  border-bottom: 1px solid grey;
+}
+
+.good {
+  cursor: pointer;
+  user-select: none;
+}
+
+.modal {
+  margin-top: 20px;
+  padding: 20px;
+  background: lightgrey;
+  text-align: center;
+}
+
+.list-box h4 {
+  cursor: pointer;
+  user-select: none;
+}
+
+.title-box {
+  display: flex;
+  align-items: center;
+  
+}
+
+.delete-post {
+  
+}

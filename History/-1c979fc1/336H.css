@@ -1,0 +1,68 @@
+.main-background {
+  width: 100%;
+  height: 500px;
+  background-image: url(https://lh3.googleusercontent.com/ogw/AF2bZygTm2eKBFZwqCsnij3T31yagMDp10WBuNZ5rZ24CAI0lhs=s64-c-mo);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 1px;
+  position: relative;
+}
+
+.main-title {
+  color: white;
+  font-size: 40px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.main-background p {
+  color: red;
+  font-size: 20px;
+  text-align: center;
+}
+
+.main-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: aqua;
+  font-size: 50px;
+  padding: 20px;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  z-index: 6;
+  width: 400px;
+}
+
+.main-gup {
+  position: relative;
+  text-align: center;
+  margin: auto;
+  left: 0px;
+  right: 0px;
+  bottom: 200px;
+  width: 80%;
+  max-width: 600px;
+  background-color: rgb(48, 41, 31);
+  box-sizing: border-box;
+}
+
+.main-gup p {
+  color: blanchedalmond;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 3000px) {
+  .main-title {
+    font-size: 30px;
+  }
+}

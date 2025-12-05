@@ -1,0 +1,24 @@
+{
+  "environment": {
+    "executable": "D:\\Coding\\ez_man\\python.exe",
+    "prefix": "D:\\Coding\\ez_man",
+    "version": "3.11.13.final.0",
+    "is64Bit": true,
+    "symlinks": [
+      "D:\\Coding\\ez_man\\python.exe"
+    ]
+  },
+  "symlinks": [
+    [
+      "D:\\Coding\\ez_man\\python.exe",
+      {
+        "secs_since_epoch": 1749129078,
+        "nanos_since_epoch": 372852000
+      },
+      {
+        "secs_since_epoch": 1756477265,
+        "nanos_since_epoch": 995417700
+      }
+    ]
+  ]
+}

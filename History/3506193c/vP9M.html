@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div style="overflow: hidden">
+      <div class="slide-container">
+        <div class="slide-box">
+          <img
+            src="https://d2hxk0kgvzehcg.cloudfront.net/wp-content/uploads/2022/02/car1-1.png"
+            alt=""
+            draggable="false"
+          />
+        </div>
+        <div class="slide-box">
+          <img
+            src="https://d2hxk0kgvzehcg.cloudfront.net/wp-content/uploads/2022/02/car2-1.png"
+            alt=""
+          />
+        </div>
+        <div class="slide-box">
+          <img
+            src="https://d2hxk0kgvzehcg.cloudfront.net/wp-content/uploads/2022/02/car3-1.png"
+            alt=""
+          />
+        </div>
+        <div class="slide-box">
+          <img
+            src="https://d2hxk0kgvzehcg.cloudfront.net/wp-content/uploads/2022/02/car3-1.png"
+            alt=""
+          />
+        </div>
+        <div class="slide-box">
+          <img
+            src="https://d2hxk0kgvzehcg.cloudfront.net/wp-content/uploads/2022/02/car3-1.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="slide-next">다음</button>
+    <button class="slide-prev">이전</button>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // function slide(구멍, 구멍2) {
+      //   $(구멍).on("click", function () {
+      //     $(".slide-container").css("transform", `translateX(${구멍2})`);
+      //   });
+      // }
+
+      // slide(".slide-1", "0vw");
+      // slide(".slide-2", "-100vw");
+      // slide(".slide-3", "-200vw");
+
+      // let nowPage = 0;
+      // let minPage = 0;
+      // let maxPage = -200;
+      // $(".slide-next").on("click", function () {
+      //   nowPage += -100;
+      //   if (nowPage >= minPage) nowPage = minPage;
+      //   if (nowPage <= maxPage) nowPage = maxPage;
+      //   $(".slide-container").css("transform", `translateX(${nowPage}vw)`);
+      // });
+
+      // $(".slide-prev").on("click", function () {
+      //   nowPage += 100;
+      //   if (nowPage >= minPage) nowPage = minPage;
+      //   if (nowPage <= maxPage) nowPage = maxPage;
+      //   $(".slide-container").css("transform", `translateX(${nowPage}vw)`);
+      // });
+
+      let countSlideBox = $(".slide-container .slide-box").length;
+      let nowPage = 0;
+      const minPage = 0;
+      const maxPage = -(countSlideBox * 100 - 100);
+
+      console.log(maxPage);
+
+      function slide(add) {
+        nowPage += add;
+        if (nowPage >= minPage) nowPage = minPage;
+        if (nowPage <= maxPage) nowPage = maxPage;
+        $(".slide-container").css("transform", `translateX(${nowPage}vw)`);
+
+        console.log(nowPage);
+        if (nowPage)
+        $(".slide-container").css("transition", `all 0s`);
+      }
+
+      $(".slide-next").on("click", () => slide(-100));
+      $(".slide-prev").on("click", () => slide(100));
+    </script>
+
+    <script>
+      var 시작좌표 = 0;
+      var 눌렀냐 = false;
+
+      $(".slide-box")
+        .eq(0)
+        .on("mousedown", function (e) {
+          시작좌표 = e.clientX;
+          눌렀냐 = true;
+        });
+
+      $(".slide-box")
+        .eq(0)
+        .on("mouseup", function (e) {
+          눌렀냐 = false;
+
+          if (e.clientX - 시작좌표 < -100) {
+            $(".slide-container").css("transition", `all 1s`);
+            slide(-100);
+          } else {
+            $(".slide-container").css("transition", `all 1s`);
+            slide(100);
+          }
+        });
+
+      $(".slide-box")
+        .eq(0)
+        .on("mousemove", function (e) {
+          if (눌렀냐) {
+            $(".slide-container").css(
+              "transform",
+              `translateX(${e.clientX - 시작좌표}px)`
+            );
+            console.log(e.clientX - 시작좌표);
+          }
+        });
+    </script>
+  </body>
+</html>

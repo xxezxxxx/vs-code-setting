@@ -1,0 +1,8 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "files.autoSave": "afterDelay",
+  "workbench.colorTheme": "Default Light+",
+  "workbench.iconTheme": "vscode-icons-mac",
+  "workbench.productIconTheme": "macos-modern"
+}

@@ -1,0 +1,20 @@
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  background: #f7f9fc;
+}
+
+.sky {
+  color: #6fbaf8;
+}
+
+.sky-btn {
+  background: #6fbaf8;
+  color: white;
+  border: none;
+}
+
+.img-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,46 @@
+.profile {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.abcdef {
+  font-size: 20px;
+  color: rgb(255, 0, 0);
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+#special {
+  text-align: center;
+  color: bisque;
+}
+
+.content {
+  text-align: center;
+  color: aqua;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  margin: 100px;
+  padding: 40px;
+  color: white;
+  background-color: blue;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 10px;
+  font-family: gulim;
+  box-shadow: 5px 5px black;
+}
+
+.container {
+  width: 800px;
+}
+
+.header {
+  width: 800px;
+}

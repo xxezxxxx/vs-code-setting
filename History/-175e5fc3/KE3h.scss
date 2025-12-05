@@ -1,0 +1,24 @@
+.flip-outer {
+  width: 300px;
+  height: 300px;
+}
+
+.flip-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  h4 {
+    width: 100%;
+    text-align: center;
+    top: 40px;
+    position: absolute;
+    transform: rotateY(180deg);
+  }
+}

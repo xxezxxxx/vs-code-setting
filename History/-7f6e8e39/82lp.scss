@@ -1,0 +1,40 @@
+$normal-size: 10px;
+// 변수
+
+%box {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+}
+
+.box-red {
+  background: red;
+  @extend %box;
+}
+
+.box-blue {
+  background: blue;
+  @extend %box;
+}
+
+.box-green {
+  background: green;
+  @extend %box;
+}
+
+@mixin test() {
+  font-size: 30px;
+  letter-spacing: -1px;
+}
+
+h2 {
+  @include test();
+}
+
+h3 {
+  @include test();
+}
+
+h4 {
+  @include test();
+}

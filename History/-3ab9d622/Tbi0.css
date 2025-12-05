@@ -1,0 +1,35 @@
+div {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(66, 66, 66);
+  width: 600px;
+  height: 500px;
+  padding: 20px;
+}
+
+.content {
+  background-color: white;
+  width: 90%;
+  height: 90%;
+  padding: 40px;
+}
+
+.title {
+  font-size: 30px;
+}
+
+input[type="email"] {
+  text-align: 200px;
+  display: block;
+  margin-left: 0px;
+  margin-right: 0px;
+}

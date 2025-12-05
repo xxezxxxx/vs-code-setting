@@ -1,0 +1,40 @@
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  background: #f7f9fc;
+}
+
+.sky {
+  color: #6fbaf8;
+}
+
+.sky-btn {
+  background: #6fbaf8;
+  color: white;
+  border: none;
+}
+
+.no-margin {
+  margin: 0px;
+}
+
+.top-left {
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+  gap: 40px;
+}
+
+.top-left-in-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.top-left-job {
+  font-size: 14px;
+}
+
+.top-right-line {
+  height: 80px;
+  border-left: 4px #f7f9fc solid;
+}

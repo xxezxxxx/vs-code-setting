@@ -1,0 +1,23 @@
+progress {
+  /*기본 배경은 없애주는게 좋습니다*/
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: white;
+  /* IE10 호환성용 */
+  color: red;
+}
+progress::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 2px;
+}
+progress::-webkit-progress-value {
+  background-color: red;
+  border-radius: 2px;
+}
+
+/*파이어폭스 호환성을 위해*/
+progress::-moz-progress-bar {
+  background-color: red;
+  border-radius: 2px;
+}

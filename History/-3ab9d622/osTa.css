@@ -1,0 +1,42 @@
+div {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(66, 66, 66);
+  width: 600px;
+  height: 500px;
+  padding: 20px;
+}
+
+.content {
+  background-color: white;
+  width: 90%;
+  height: 90%;
+  padding: 40px;
+}
+
+.title {
+  font-size: 30px;
+}
+
+input[type="email"] {
+  width: 100%;
+}
+
+.name-box {
+  width: 400px;
+}
+
+.name-big-box {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}

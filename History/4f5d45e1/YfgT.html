@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apple Style UI with Plotly Grid</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-content" id="left-sidebar">
+        <section class="section search-section">
+          <div class="search-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input
+              type="text"
+              placeholder="검색어를 입력하세요..."
+              class="apple-search-input"
+            />
+          </div>
+        </section>
+
+        <section class="section list-section list-one">
+          <h3>차트 목록 (상세 보기)</h3>
+          <ul id="chart-list-ul"></ul>
+        </section>
+
+        <section class="section list-section list-two">
+          <h3>보조 목록</h3>
+          <ul>
+            <li>추가 항목 A</li>
+            <li>추가 항목 B</li>
+          </ul>
+        </section>
+      </div>
+
+      <button id="sidebar-toggle-btn" class="toggle-button">&lt;</button>
+
+      <div class="main-content">
+        <div class="customization-panel">
+          <h2>📊 차트 열(Column) 개수 선택</h2>
+          <div id="column-selector" class="layout-selector-group">
+            <label class="radio-label">
+              <input type="radio" name="chart-cols" value="1" checked /> 1
+              Column
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="chart-cols" value="2" /> 2 Columns
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="chart-cols" value="3" /> 3 Columns
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="chart-cols" value="4" /> 4 Columns
+            </label>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div id="chart-flex-container" class="chart-flex-container"></div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+.container {
+  width: 800px;
+  height: 400px;
+}
+
+.left {
+  width: 70%;
+  height: 400px;
+  background-color: antiquewhite;
+  vertical-align: top;
+  float: left;
+}
+
+.right {
+  width: 30%;
+  height: 400px;
+  background-color: coral;
+  float: left;
+}
+
+.left-header {
+  width: 100%;
+  height: 20%;
+}
+
+.left-content {
+  width: 100%;
+  height: 80%;
+  background-color: blueviolet;
+}
+
+.profile {
+  border-radius: 40px;
+}
+
+.profile-box {
+  display: inline-block;
+}
+
+.nickname {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.ago {
+  display: inline-block;
+}

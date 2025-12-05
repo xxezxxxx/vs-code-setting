@@ -1,0 +1,482 @@
+/* 전체 리셋 및 기본 스타일 (폰트 스택 유지) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Apple SF Pro 폰트와 유사한 시스템 폰트 스택 사용 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: #f5f5f7; /* Apple 제품의 배경처럼 아주 옅은 회색 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 메인 컨테이너 설정: 더 부드러운 그림자 */
+.container {
+  display: flex;
+  width: 90vw;
+  border-radius: 12px;
+  overflow: hidden;
+  /* 그림자를 더 은은하고 넓게 (Apple UI의 "떠 있는" 느낌) */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+}
+
+/* ⬅️ Left Content (30%) - 더 깨끗한 분리선 */
+.left-content {
+  flex: 0 0 30%;
+  background-color: #f8f8f8; /* 사이드바에 아주 약간의 회색을 주어 메인 콘텐츠와 구분 */
+  border-right: 1px solid #eeeeee; /* 더 옅은 구분선 */
+  padding: 20px; /* 여백 증가 */
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  margin-bottom: 25px; /* 섹션 간 여백 증가 */
+  /* 섹션 하단 구분선 제거 (더 깨끗한 룩) */
+}
+
+/* 💡 검색 섹션 - 아이콘과 입력창을 더 통합된 느낌으로 */
+.search-section {
+  margin-bottom: 20px;
+}
+
+/* 섹션 제목 스타일: 더 굵고 명확하게 */
+.section h3 {
+  color: #1d1d1f;
+  font-size: 14px;
+  font-weight: 700; /* Bold */
+  margin-bottom: 12px;
+  text-transform: uppercase; /* macOS 사이드바처럼 대문자로 (선택 사항) */
+  letter-spacing: 0.5px;
+  padding-left: 5px; /* 리스트 항목과 정렬 */
+}
+
+/* 검색 래퍼 (이전과 동일) */
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: #8e8e93;
+  font-size: 13px; /* 아이콘 크기 약간 줄임 */
+  z-index: 2;
+}
+
+.apple-search-input {
+  width: 100%;
+  /* 배경을 옅은 회색으로 만들어 검색 영역 시각적 강조 */
+  background-color: #ececee;
+  padding: 7px 10px 7px 30px;
+  border: none; /* 테두리 제거 */
+  border-radius: 10px; /* 더 부드러운 둥근 모서리 */
+  font-size: 14px;
+  font-weight: 400;
+  color: #1d1d1f;
+  outline: none;
+  transition: background-color 0.2s, box-shadow 0.2s;
+
+  /* placeholder 텍스트 스타일링 */
+  &::placeholder {
+    color: #8e8e93;
+  }
+}
+
+.apple-search-input:focus {
+  background-color: #ffffff; /* 포커스 시 흰색으로 강조 */
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2); /* 은은한 포커스 링 (Apple Blue) */
+}
+/* ---------------------------------------------------- */
+
+/* 💡 리스트 섹션 - 항목에 더 많은 여백과 깔끔한 상태 표시 */
+.list-section {
+  /* 남은 공간을 리스트 섹션들이 균등하게 나누도록 flex-grow를 조정 */
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* 두 번째 리스트에만 약간의 상단 여백 추가 */
+.list-two {
+  margin-top: 10px;
+}
+
+.list-section ul {
+  list-style: none;
+}
+
+.list-section li {
+  padding: 8px 10px; /* 좌우 여백 증가 */
+  margin: 3px 0; /* 항목 간 수직 여백 추가 */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500; /* 미디엄 굵기 */
+  color: #1d1d1f; /* 기본 텍스트 색상 진하게 */
+  border-radius: 6px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+/* 호버 상태: 리스트의 가장 흔한 상호작용 스타일 */
+.list-section li:hover {
+  background-color: #e5e5e5; /* 호버 시 중간 회색 */
+}
+
+/* '선택됨' 상태 시뮬레이션 (클래스 추가 필요) */
+.list-section li.active {
+  background-color: #007aff; /* Apple Blue 배경 */
+  color: #ffffff; /* 흰색 텍스트 */
+  font-weight: 600;
+}
+
+.list-section li.active:hover {
+  background-color: #0077f5; /* 선택된 상태에서도 호버 시 미묘하게 진하게 */
+}
+
+/* ➡️ Main Content (70%) - 더 깔끔한 디자인 */
+.main-content {
+  flex: 1;
+  padding: 40px; /* 메인 콘텐츠 여백 증가 */
+  background-color: #ffffff;
+  overflow: auto;
+}
+
+.main-content h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 20px;
+}
+
+.main-content p {
+  font-size: 16px;
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* chart style */
+
+/* ... 기존 CSS 코드 유지 ... */
+
+/* ➡️ Main Content 내부 UI 스타일 */
+/* ... 기존 CSS 코드 유지 ... */
+
+/* ➡️ Main Content 내부 UI 스타일 */
+.customization-panel {
+  padding-bottom: 20px;
+}
+
+.customization-panel h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 15px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 10px 0 30px 0;
+}
+
+/* 💡 라디오 버튼 스타일 (Apple 스타일) */
+.layout-selector-group {
+  display: flex;
+  gap: 20px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #464646;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* 라디오 버튼 커스텀 스타일링 */
+.radio-label input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #d1d1d6;
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.radio-label input[type="radio"]:checked {
+  border: 5px solid #007aff; /* Apple Blue 링 */
+}
+
+/* 💡 CSS Grid 컨테이너 설정 */
+.chart-grid-container {
+  display: grid;
+  /* 기본적으로 3x3을 위한 설정 */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px; /* 차트 간 여백 */
+  width: 100%;
+  height: 70vh; /* 차트 영역 높이 설정 (조정 가능) */
+  min-height: 500px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+/* JavaScript의 data-layout 속성에 따른 레이아웃 변경 */
+
+/* 3x3 레이아웃 (기본값) */
+.chart-grid-container[data-layout="3x3"] {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+/* 2x5 레이아웃 */
+.chart-grid-container[data-layout="2x5"] {
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+/* 1x2 레이아웃 (차트 2개씩 한 줄에 배치) */
+.chart-grid-container[data-layout="1x2"] {
+  /* 2개의 차트만 가로로 크게 배치되도록 (각 50%) */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr; /* 하나의 행만 사용 */
+  height: 40vh; /* 높이를 줄여서 덜 꽉 찬 느낌 */
+}
+
+/* 개별 차트 아이템 스타일 */
+.grid-chart-item {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.grid-chart-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* ... 기존 CSS 코드 유지 ... */
+
+/* 💡 CSS Grid 컨테이너 설정 */
+.chart-grid-container {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  /* 3x3 (9개)와 2x5 (10개) 레이아웃의 기본 높이를 70vh로 설정합니다. */
+  height: 70vh;
+  min-height: 500px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  transition: all 0.3s ease; /* 높이/레이아웃 변경 시 부드럽게 전환되도록 추가 */
+}
+
+/* JavaScript의 data-layout 속성에 따른 레이아웃 변경 */
+
+/* 3x3 레이아웃 (기본값) */
+.chart-grid-container[data-layout="3x3"] {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 70vh; /* 명시적 높이 */
+}
+
+/* 2x5 레이아웃 */
+.chart-grid-container[data-layout="2x5"] {
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  height: 50vh; /* 2행이므로 높이를 줄여서 시각적 균형을 맞춥니다. */
+}
+
+/* 1x2 레이아웃 */
+.chart-grid-container[data-layout="1x2"] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  /* 1행만 사용하므로 높이를 35vh 정도로 줄여서 1줄로 보입니다. */
+  height: 35vh;
+}
+
+/* ... 기존의 전체 및 left-content 스타일 유지 ... */
+
+/* 💡 CSS Grid 대신 Flexbox 기반 컨테이너 설정 */
+.chart-flex-container {
+  display: flex; /* Flexbox 활성화 */
+  flex-wrap: wrap; /* 차트가 10개 이상일 경우 줄 바꿈 대비 */
+  gap: 20px; /* 차트 간 여백 */
+  width: 100%;
+  height: 70vh; /* 차트 영역 높이 설정 */
+  min-height: 500px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  /* 기본값: 1개만 표시 (100% 너비) */
+  --chart-width: calc(100% - 0px);
+}
+
+/* JavaScript에서 data-cols 속성(1, 2, 3, 4)을 설정하면 여기에 맞춰 차트 너비 변경 */
+
+.chart-flex-container[data-cols="1"] {
+  /* 1 Column: 너비 100% */
+  --chart-width: calc(100% - 0px);
+}
+.chart-flex-container[data-cols="2"] {
+  /* 2 Columns: 너비 50% - 10px(gap 절반) */
+  --chart-width: calc(50% - 10px);
+}
+.chart-flex-container[data-cols="3"] {
+  /* 3 Columns: 너비 33.333% - 13.333px */
+  --chart-width: calc(33.333% - 13.333px);
+}
+.chart-flex-container[data-cols="4"] {
+  /* 4 Columns: 너비 25% - 15px(gap 20px * 3 / 4) */
+  --chart-width: calc(25% - 15px);
+}
+
+/* 개별 차트 아이템 스타일 */
+.grid-chart-item {
+  /* Flexbox에서 이 변수(chart-width)를 사용하여 너비 설정 */
+  flex: 0 0 var(--chart-width);
+
+  /* 선택된 Column 개수에 따라 높이를 유동적으로 설정 */
+  height: 100%;
+
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* 1개만 표시될 경우 높이를 컨테이너 전체로 설정 */
+.chart-flex-container[data-cols="1"] .grid-chart-item {
+  height: 100%;
+}
+/* 2개 이상 표시될 경우 높이를 50%로 설정하여 2줄로 배치 */
+.chart-flex-container[data-cols="2"] .grid-chart-item,
+.chart-flex-container[data-cols="3"] .grid-chart-item,
+.chart-flex-container[data-cols="4"] .grid-chart-item {
+  height: calc(50% - 10px); /* 2줄 배치 + gap 20px 고려 */
+}
+
+.grid-chart-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* 💡 [styles.css] 수정 사항 */
+
+/* .container에 relative 추가하여 버튼의 위치 기준점 설정 */
+.container {
+  /* ... (기존 스타일 유지) ... */
+  position: relative; /* 토글 버튼을 위한 기준점 */
+}
+
+/* ⬅️ Left Content (30%) - 변형 설정 추가 */
+.left-content {
+  flex: 0 0 30%;
+  /* 💡 수정: 초기 너비 설정 (JS에서 이 값 사용) */
+  width: 30%;
+  max-width: 300px; /* 최대 너비 제한 (선택 사항) */
+
+  /* 💡 핵심: 변형을 부드럽게 적용 */
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0); /* 기본 상태: 보임 */
+
+  /* ... (나머지 스타일 유지) ... */
+}
+
+/* 💡 추가: 사이드바 접힘 상태 */
+.left-content.collapsed {
+  /* 너비만큼 왼쪽으로 이동하여 숨김 */
+  /* width: 300px; 일 경우 -300px */
+  transform: translateX(-100%);
+}
+
+/* 💡 [styles.css] 토글 버튼 스타일 추가 */
+.toggle-button {
+  position: absolute;
+  top: 50%;
+  /* 💡 초기 위치: 펼쳐진 상태일 때 사이드바의 오른쪽에 위치 */
+  left: 30%;
+  z-index: 10;
+  transform: translateY(-50%);
+
+  /* 스타일링 */
+  width: 24px;
+  height: 60px; /* 약간 길게 만들어서 잡기 쉽게 */
+  border: none;
+  background-color: #007aff;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out, background-color 0.2s;
+}
+
+.toggle-button:hover {
+  background-color: #0066d9;
+}
+
+/* 💡 추가: 접힘 상태일 때 버튼 위치 및 스타일 변경 */
+.toggle-button.collapsed {
+  /* left-content의 너비가 30%이므로 0으로 이동 */
+  left: 0;
+  border-radius: 8px 0 0 8px; /* 모서리 방향 반대로 */
+}
+
+/* ➡️ Main Content (70%) - flex-grow를 사용하므로 추가 수정 불필요 */
+/* Main Content는 사이드바가 접히면 남은 공간을 자동으로 채웁니다. */
+.main-content {
+  flex: 1; /* flex-grow: 1 유지 */
+  /* ... (나머지 스타일 유지) ... */
+}
+
+/* 💡 [styles.css] 파일 하단에 추가 */
+
+/* ---------------------------------------------------- */
+/* 상세 보기 모드 (Detail View) 스타일 */
+/* ---------------------------------------------------- */
+
+/* 컨테이너에 'detail-view' 클래스가 추가되면 활성화 */
+.chart-flex-container.detail-view {
+  /* 1. Flexbox 속성 초기화 */
+  /* 차트들이 wrap되는 것을 막고, 한 줄에 하나만 있도록 설정 */
+  flex-wrap: nowrap;
+  /* 2. 높이를 100%로 설정하여 컨테이너 전체를 사용하도록 함 */
+  height: 100%;
+  min-height: 500px;
+
+  /* 3. Column 너비 변수를 무시 */
+  --chart-width: 100%;
+}
+
+/* 상세 보기 모드일 때, 개별 차트 항목의 크기 설정 */
+.chart-flex-container.detail-view .grid-chart-item {
+  /* flex 기본값으로 설정하여 부모 크기에 맞춰 늘어나도록 함 */
+  flex: 1 1 100%;
+  /* 높이를 부모 컨테이너(100%) 전체로 설정 */
+  height: 100%;
+
+  /* 숨겨진 차트의 overflow 설정을 일관되게 유지 */
+  overflow-y: auto;
+}

@@ -1,0 +1,24 @@
+{
+  "environment": {
+    "executable": "D:\\Coding\\.conda\\python.exe",
+    "prefix": "D:\\Coding\\.conda",
+    "version": "3.11.13.final.0",
+    "is64Bit": true,
+    "symlinks": [
+      "D:\\Coding\\.conda\\python.exe"
+    ]
+  },
+  "symlinks": [
+    [
+      "D:\\Coding\\.conda\\python.exe",
+      {
+        "secs_since_epoch": 1749129078,
+        "nanos_since_epoch": 372852000
+      },
+      {
+        "secs_since_epoch": 1756476771,
+        "nanos_since_epoch": 619726100
+      }
+    ]
+  ]
+}

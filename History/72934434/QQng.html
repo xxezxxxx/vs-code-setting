@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <img src="https://placehold.co/600" class="w-100" />
+          <h5>Card title</h5>
+          <p>가격 : 70000</p>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-danger" id="more">더보기</button>
+    <button class="btn btn-danger" id="sort">정렬-가격 높은 순</button>
+    <button class="btn btn-danger" id="sort-cba">정렬-다나가 순</button>
+    <button class="btn btn-danger" id="filter">필터-6만원 이하</button>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var products = [
+        { id: 0, price: 70000, title: "Blossom Dress" },
+        { id: 1, price: 50000, title: "Springfield Shirt" },
+        { id: 2, price: 60000, title: "Black Monastery" },
+      ];
+
+      var 어레이 = [7, 3, 5, 2, 40];
+
+      var 새어레이 = 어레이.filter(function (a) {
+        return a < 4;
+      });
+
+      var 새어레이2 = 어레이.map(function (a) {
+        return a * 4;
+      });
+      console.log(새어레이2);
+      // 어레이.sort(function (a, b) {
+      //   return b - a;
+      // });
+
+      var 어레이2 = ["a", "c", "b"];
+      어레이2.sort(function (a, b) {
+        const text = a < b;
+        if (text) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+
+      $("#filter").on("click", function () {
+        products.filter(function (a) {
+          return a.price < 60000;
+        });
+        정렬의크기();
+      });
+
+      $("#sort").on("click", function () {
+        products.sort(function (a, b) {
+          const what = a.price > b.price;
+          console.log(what);
+          if (what) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
+        정렬의크기();
+      });
+
+      $("#sort-cba").on("click", function () {
+        products.sort(function (a, b) {
+          const what = a.title > b.title;
+          console.log(what);
+          if (what) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
+        정렬의크기();
+      });
+
+      function 정렬의크기() {
+        for (const key in products) {
+          const title = products[key].title;
+          const price = products[key].price;
+
+          if (key == 0) {
+            $(".row").eq(0).html("");
+          }
+
+          $(".row").eq(0).append(`
+            <div class="col-sm-4">
+            <img src="https://placehold.co/600" class="w-100" />
+            <h5>${title}</h5>
+            <p>가격 : ${price}</p>
+        </div>
+        `);
+        }
+      }
+      for (const key in products) {
+        const title = products[key].title;
+        const price = products[key].price;
+
+        if (key == 0) {
+          $(".row").eq(0).html("");
+        }
+
+        $(".row").eq(0).append(`
+            <div class="col-sm-4">
+            <img src="https://placehold.co/600" class="w-100" />
+            <h5>${title}</h5>
+            <p>가격 : ${price}</p>
+        </div>
+        `);
+      }
+
+      let count = 1;
+      $("#more").on("click", function () {
+        actionMore(count);
+        count += 1;
+      });
+
+      function actionMore(count) {
+        $.get(`https://codingapple1.github.io/js/more${count}.json`).done(
+          function (data) {
+            data.forEach(function (item) {
+              $(".row").eq(0).append(`
+            <div class="col-sm-4">
+            <img src="https://placehold.co/600" class="w-100" />
+            <h5>${item.title}</h5>
+            <p>가격 : ${item.price}</p>
+        </div>
+        `);
+            });
+          }
+        );
+      }
+    </script>
+  </body>
+</html>

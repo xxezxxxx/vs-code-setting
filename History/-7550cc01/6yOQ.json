@@ -1,0 +1,12 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "files.autoSave": "afterDelay",
+  "workbench.colorTheme": "Default Light+",
+  "workbench.iconTheme": "vscode-icons-mac",
+  "workbench.productIconTheme": "macos-modern",
+  "python.condaPath": "C:\\Users\\ez\\miniconda3\\Scripts\\conda.exe",
+  "git.ignoreMissingGitWarning": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.donotShowInfoMsg": true
+}

@@ -1,0 +1,24 @@
+{
+  "environment": {
+    "executable": "C:\\Users\\ez\\miniconda3\\python.exe",
+    "prefix": "C:\\Users\\ez\\miniconda3",
+    "version": "3.13.5.final.0",
+    "is64Bit": true,
+    "symlinks": [
+      "C:\\Users\\ez\\miniconda3\\python.exe"
+    ]
+  },
+  "symlinks": [
+    [
+      "C:\\Users\\ez\\miniconda3\\python.exe",
+      {
+        "secs_since_epoch": 1749747262,
+        "nanos_since_epoch": 504522000
+      },
+      {
+        "secs_since_epoch": 1756463347,
+        "nanos_since_epoch": 103533700
+      }
+    ]
+  ]
+}

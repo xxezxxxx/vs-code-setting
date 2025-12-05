@@ -1,0 +1,21 @@
+.main-background {
+  width: 100%;
+  height: 500px;
+  background-image: url(https://lh3.googleusercontent.com/ogw/AF2bZygTm2eKBFZwqCsnij3T31yagMDp10WBuNZ5rZ24CAI0lhs=s64-c-mo);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 1px;
+}
+
+.main-title {
+  color: white;
+  font-size: 40px;
+  margin-top: 200px;
+}
+
+.main-background {
+  color: red;
+  font-size: 20px;
+  padding: 50px;
+}

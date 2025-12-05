@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "이쁜폰트";
+  src: url(../font/NanumSquareAcB.woff);
+}
+
+div,
+input,
+textarea {
+  box-sizing: border-box;
+}
+
+p {
+  transform: rotate(0.03deg);
+  margin: 0px;
+  vertical-align: top;
+}
+
+.header {
+  display: flex;
+  gap: 10px;
+}

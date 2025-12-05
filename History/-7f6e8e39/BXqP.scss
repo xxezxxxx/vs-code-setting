@@ -1,0 +1,9 @@
+$main-color: red;
+$normal-size: 16px;
+// 변수
+
+.background {
+  height: 80px;
+  width: $normal-size -2px;
+  background: $main-color;
+}

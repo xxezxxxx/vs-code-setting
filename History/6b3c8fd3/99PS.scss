@@ -1,0 +1,31 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  grid-template-areas:
+    "head head head head"
+    "side content content content"
+    "side content content content";
+  div {
+    border: 1px solid black;
+  }
+}
+
+.grid-nav {
+  grid-area: head;
+  background: blue;
+}
+
+.grid-sidebar {
+  grid-area: side;
+  background: green;
+}
+
+.grid-content {
+  grid-area: content;
+  background: purple;
+}
+
+@media screen {
+    
+}

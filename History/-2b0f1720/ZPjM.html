@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <style>
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .card {
+        width: 200px;
+        padding: 12px;
+        border-radius: 8px;
+        background: #f8f9fc;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-title {
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .card-item {
+        margin: 2px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <select id="sdwtSelector">
+      <option value="FORWARD">FORWARD</option>
+      <option value="ABCD">ABCD</option>
+      <option value="ZXC">ZXC</option>
+    </select>
+
+    <div id="lastUpdateBox"></div>
+
+    <div id="cardContainer" class="cards"></div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const params = new URLSearchParams(location.search);
+      const sdwt = params.get("sdwt") || "FORWARD";
+      loadSDWT(sdwt);
+      function loadSDWT(sdwt) {
+        $.post(`http://127.0.0.1:8000/api/load?sdwt=${sdwt}`)
+          .done((res) => {
+            // LAST UPDATE 출력
+            $("#lastUpdateBox").html(`
+        <div style="font-weight:bold; margin-bottom:10px;">
+          LAST UPDATE: ${res.update}
+        </div>
+      `);
+
+            // 카드 렌더링
+            const container = $("#cardContainer");
+            container.empty();
+
+            res.data.forEach((item) => {
+              const card = `
+          <div class="card">
+            <div class="card-title">${item.NAME}</div>
+            <div class="card-item">AGE: ${item.AGE}</div>
+            <div class="card-item">VALUE: ${item.VALUE}</div>
+          </div>
+        `;
+              container.append(card);
+            });
+          })
+          .fail((xhr) => {
+            console.error("API 에러:", xhr);
+          });
+      }
+      $("#sdwtSelector").on("change", function () {
+        const sdwt = $(this).val();
+
+        // URL 변경 (새로고침 없이 쿼리만 변경)
+        const newUrl = `${window.location.pathname}?sdwt=${sdwt}`;
+        window.history.pushState({}, "", newUrl);
+
+        // API 요청
+        loadSDWT(sdwt);
+      });
+    </script>
+  </body>
+</html>

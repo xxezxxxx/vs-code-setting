@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="lastUpdateBox"></div>
+
+    <div id="cardContainer" class="cards"></div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $.post("http://127.0.0.1:8000/api/load?sdwt=FORWARD")
+        .done((res) => {
+          console.log("응답:", res);
+
+          // 1) LAST UPDATE 적용
+          $("#lastUpdate").text(res.update);
+
+          // 2) 데이터 가져오기
+          const items = res.data;
+
+          // 3) 표 비우기
+          const table = $("#dataTable");
+          table.empty();
+
+          // 4) 데이터 가공 + 렌더링
+          items.forEach((item) => {
+            // 필요한 가공이 있으면 여기서 처리
+            // 예: AGE +1 한다면 → item.AGE + 1
+            table.append(`
+        <tr>
+          <td>${item.NAME}</td>
+          <td>${item.AGE}</td>
+          <td>${item.VALUE}</td>
+        </tr>
+      `);
+          });
+        })
+        .fail((xhr) => {
+          console.error("에러:", xhr);
+        });
+    </script>
+  </body>
+</html>

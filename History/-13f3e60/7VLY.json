@@ -1,0 +1,44 @@
+{
+  "FORWARD": {
+    "updated_at": "2025-11-19 18:45:00",
+    "items": [
+      {
+        "NAME": "Alice",
+        "AGE": 25,
+        "VALUE": "OK"
+      },
+      {
+        "NAME": "Bob",
+        "AGE": 31,
+        "VALUE": "NG"
+      }
+    ]
+  },
+
+  "ABCD": {
+    "updated_at": "2025-11-19 18:43:10",
+    "items": [
+      {
+        "NAME": "Charlie",
+        "AGE": 27,
+        "VALUE": "OK"
+      }
+    ]
+  },
+
+  "ZXC": {
+    "updated_at": "2025-11-19 18:46:30",
+    "items": [
+      {
+        "NAME": "David",
+        "AGE": 40,
+        "VALUE": "WARN"
+      },
+      {
+        "NAME": "Eva",
+        "AGE": 29,
+        "VALUE": "OK"
+      }
+    ]
+  }
+}

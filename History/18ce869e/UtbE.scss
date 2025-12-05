@@ -1,0 +1,50 @@
+$main-color: rgb(105, 164, 253);
+$side-color: rgb(196, 196, 196);
+
+.list-1 {
+  list-style: none;
+
+  li {
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    height: 40px;
+    border: 1px solid $side-color;
+    margin-top: -1px;
+  }
+
+  li:hover {
+    background: $main-color;
+    color: white;
+    border: 1px solid $main-color;
+    position: relative;
+  }
+}
+
+$background-green: rgb(77, 245, 77);
+$badge: "well done";
+
+
+.alert-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@mixin
+
+.alert {
+  padding-left: 20px;
+  margin: 10px;
+  height: 40px;
+  width: 800px;
+  background: $background-green;
+  color: darken($background-green, 40%);
+  display: flex;
+  align-items: center;
+  ::before {
+    content: $badge;
+    font-
+  }
+}

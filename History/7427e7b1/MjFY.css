@@ -1,0 +1,8 @@
+.slide-container {
+  width: 300vw;
+}
+
+.slide-box {
+  width: 100vw;
+  float: left;
+}

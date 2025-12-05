@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <p>태조 이성계가 태어난 년도는?</p>
+    <input type="text" id="answer" />
+    <button id="send-answer">제출</button>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let age = 20;
+      const native = "Seoul";
+
+      var 예금액 = 60000;
+      var 미래예금액 = 0;
+
+      //여기에 코드짜보십시오
+      if (예금액 > 50000) {
+        미래예금액 = 예금액 * 1.2 * 1.2;
+      } else {
+        미래예금액 = 예금액 * 1.15 * 1.15;
+      }
+
+      console.log(미래예금액);
+
+      var first = 360;
+      var second;
+      var third;
+
+      //여기 어떤 코드가 들어가면 될까요?
+
+      second = first * (2 / 3);
+      third = second * (2 / 3);
+      var sum = first + second + third;
+      console.log(sum);
+    </script>
+
+    <script>
+      let count = 0;
+      $("#send-answer").on("click", function () {
+        count += 1;
+        if ($("#answer").val() == 1335) {
+          alert("성공");
+        } else if (count >= 3) {
+          alert("멍청아");
+        }
+      });
+    </script>
+  </body>
+</html>

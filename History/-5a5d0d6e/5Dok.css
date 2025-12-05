@@ -1,0 +1,4 @@
+.item-card-box {
+  display: flex;
+  gap: 10px;
+}

@@ -1,0 +1,256 @@
+/* 전체 리셋 및 기본 스타일 (폰트 스택 유지) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Apple SF Pro 폰트와 유사한 시스템 폰트 스택 사용 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: #f5f5f7; /* Apple 제품의 배경처럼 아주 옅은 회색 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* 메인 컨테이너 설정 */
+.container {
+  display: flex;
+  width: 90vw;
+  height: 90vh;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+}
+
+/* ⬅️ Left Content (30%) */
+.left-content {
+  flex: 0 0 30%;
+  background-color: #f8f8f8;
+  border-right: 1px solid #eeeeee;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  margin-bottom: 25px;
+}
+
+/* 검색 섹션 */
+.search-section {
+  margin-bottom: 20px;
+}
+
+.section h3 {
+  color: #1d1d1f;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-left: 5px;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: #8e8e93;
+  font-size: 13px;
+  z-index: 2;
+}
+
+.apple-search-input {
+  width: 100%;
+  background-color: #ececee;
+  padding: 7px 10px 7px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1d1d1f;
+  outline: none;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.apple-search-input::placeholder {
+  color: #8e8e93;
+}
+
+.apple-search-input:focus {
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+/* 💡 리스트 섹션 */
+.list-section {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.list-two {
+  margin-top: 10px;
+}
+
+.list-section ul {
+  list-style: none;
+}
+
+.list-section li {
+  padding: 8px 10px;
+  margin: 3px 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1d1d1f;
+  border-radius: 6px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.list-section li:hover {
+  background-color: #e5e5e5;
+}
+
+.list-section li.active {
+  background-color: #007aff;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.list-section li.active:hover {
+  background-color: #0077f5;
+}
+
+/* ➡️ Main Content (70%) */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  background-color: #ffffff;
+}
+
+.customization-panel {
+  padding-bottom: 20px;
+}
+
+.customization-panel h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 15px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 10px 0 30px 0;
+}
+
+/* 라디오 버튼 스타일 */
+.layout-selector-group {
+  display: flex;
+  gap: 20px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #464646;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.radio-label input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #d1d1d6;
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.radio-label input[type="radio"]:checked {
+  border: 5px solid #007aff;
+}
+
+/* 📊 Flexbox 기반 차트 컨테이너 (Column 선택 기능) */
+.chart-flex-container {
+  display: flex; /* Flexbox 활성화 */
+  flex-wrap: wrap; /* 차트가 10개 이상일 경우 줄 바꿈 */
+  gap: 20px; /* 차트 간 여백 */
+  width: 100%;
+
+  /* 높이를 내용에 맡기고 최소 높이만 지정 */
+  min-height: 500px;
+
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  /* 기본값: 1개만 표시 (100% 너비) */
+  --chart-width: calc(100% - 0px);
+}
+
+/* JavaScript에서 data-cols 속성(1, 2, 3, 4)을 설정하면 여기에 맞춰 차트 너비 변경 */
+.chart-flex-container[data-cols="1"] {
+  --chart-width: calc(100% - 0px);
+}
+.chart-flex-container[data-cols="2"] {
+  --chart-width: calc(50% - 10px); /* 2개: 50% - (gap/2) */
+}
+.chart-flex-container[data-cols="3"] {
+  --chart-width: calc(33.333% - 13.333px); /* 3개: 33.333% - (gap * 2 / 3) */
+}
+.chart-flex-container[data-cols="4"] {
+  --chart-width: calc(25% - 15px); /* 4개: 25% - (gap * 3 / 4) */
+}
+
+/* 개별 차트 아이템 스타일 */
+.grid-chart-item {
+  /* Flexbox에서 이 변수(chart-width)를 사용하여 너비 설정 */
+  flex: 0 0 var(--chart-width);
+
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+
+  /* 💡 수정: 차트 내용이 넘치면 스크롤되도록 변경 */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* 1개만 표시될 경우 높이 (한 줄 전체 사용) */
+.chart-flex-container[data-cols="1"] .grid-chart-item {
+  height: 100%;
+}
+
+/* 2개 이상 표시될 경우 높이 (2줄 배치) */
+.chart-flex-container[data-cols="2"] .grid-chart-item,
+.chart-flex-container[data-cols="3"] .grid-chart-item,
+.chart-flex-container[data-cols="4"] .grid-chart-item {
+  height: calc(50% - 10px); /* 2줄 배치 + gap 20px 고려 (50% - gap/2) */
+}
+
+.grid-chart-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}

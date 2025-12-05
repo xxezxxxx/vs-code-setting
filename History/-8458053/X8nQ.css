@@ -1,0 +1,33 @@
+div {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.main-bg {
+  height: 300px;
+  background-image: url(https://d2hxk0kgvzehcg.cloudfront.net/wp-content/uploads/2022/04/bg-1.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.product-img {
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+}
+
+.product-box {
+  text-align: center;
+}
+
+.start {
+  opacity: 0;
+}
+
+.end {
+  opacity: 1;
+  transition: opacity 0.5s;
+}

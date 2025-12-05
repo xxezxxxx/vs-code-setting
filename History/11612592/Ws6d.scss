@@ -1,0 +1,114 @@
+.ani-text {
+  text-align: center;
+
+  &:hover {
+    animation-name: movehorizental;
+    animation-duration: 1s;
+  }
+}
+
+@keyframes movehorizental {
+  0% {
+    transform: translateX(0px);
+  }
+
+  33% {
+    transform: translateX(-100px);
+  }
+
+  66% {
+    transform: translateX(100px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes btnmove {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-30deg);
+  }
+
+  50% {
+    transform: rotate(30deg);
+  }
+
+  75% {
+    transform: rotate(-30deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.btn {
+  color: white;
+  font-size: 20px;
+  background: blue;
+  border: 0px;
+  border-radius: 10px;
+  height: 80px;
+  width: 100px;
+
+  &:hover {
+    animation-name: btnmove;
+    animation-duration: 0.5s;
+  }
+}
+
+@keyframes plusmove {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(45deg) scale(2);
+  }
+}
+
+.plus {
+  display: inline-block;
+  margin: 0px;
+
+  &:hover {
+    animation-name: plusmove;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+}
+
+.left {
+  background: black;
+  height: 400px;
+  width: 160px;
+  transform: translateX(-110px);
+  transition: all 1s;
+
+  &:hover {
+    transform: translateX(0px);
+    transition: all 1s;
+  }
+
+  &:hover .option {
+    transform: translateX(100px);
+    transition: all 1s;
+  }
+}
+
+.option {
+  color: white;
+  text-align: center;
+}
+
+.menu {
+  text-align: right;
+  margin-right: 10px;
+}

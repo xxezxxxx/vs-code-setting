@@ -1,0 +1,12 @@
+$normal-size: 10px;
+// 변수
+
+:root {
+  --main-color: red;
+}
+
+.background {
+  height: 80px;
+  width: $normal-size - 2px;
+  background: var(--main-color);
+}

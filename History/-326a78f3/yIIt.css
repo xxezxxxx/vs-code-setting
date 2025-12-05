@@ -1,0 +1,248 @@
+/* 전체 리셋 및 기본 스타일 (폰트 스택 유지) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Apple SF Pro 폰트와 유사한 시스템 폰트 스택 사용 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: #f5f5f7; /* Apple 제품의 배경처럼 아주 옅은 회색 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* 메인 컨테이너 설정: 더 부드러운 그림자 */
+.container {
+  display: flex;
+  width: 90vw;
+  height: 90vh;
+  border-radius: 12px;
+  overflow: hidden;
+  /* 그림자를 더 은은하고 넓게 (Apple UI의 "떠 있는" 느낌) */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+}
+
+/* ⬅️ Left Content (30%) - 더 깨끗한 분리선 */
+.left-content {
+  flex: 0 0 30%;
+  background-color: #f8f8f8; /* 사이드바에 아주 약간의 회색을 주어 메인 콘텐츠와 구분 */
+  border-right: 1px solid #eeeeee; /* 더 옅은 구분선 */
+  padding: 20px; /* 여백 증가 */
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  margin-bottom: 25px; /* 섹션 간 여백 증가 */
+  /* 섹션 하단 구분선 제거 (더 깨끗한 룩) */
+}
+
+/* 💡 검색 섹션 - 아이콘과 입력창을 더 통합된 느낌으로 */
+.search-section {
+  margin-bottom: 20px;
+}
+
+/* 섹션 제목 스타일: 더 굵고 명확하게 */
+.section h3 {
+  color: #1d1d1f;
+  font-size: 14px;
+  font-weight: 700; /* Bold */
+  margin-bottom: 12px;
+  text-transform: uppercase; /* macOS 사이드바처럼 대문자로 (선택 사항) */
+  letter-spacing: 0.5px;
+  padding-left: 5px; /* 리스트 항목과 정렬 */
+}
+
+/* 검색 래퍼 (이전과 동일) */
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: #8e8e93;
+  font-size: 13px; /* 아이콘 크기 약간 줄임 */
+  z-index: 2;
+}
+
+.apple-search-input {
+  width: 100%;
+  /* 배경을 옅은 회색으로 만들어 검색 영역 시각적 강조 */
+  background-color: #ececee;
+  padding: 7px 10px 7px 30px;
+  border: none; /* 테두리 제거 */
+  border-radius: 10px; /* 더 부드러운 둥근 모서리 */
+  font-size: 14px;
+  font-weight: 400;
+  color: #1d1d1f;
+  outline: none;
+  transition: background-color 0.2s, box-shadow 0.2s;
+
+  /* placeholder 텍스트 스타일링 */
+  &::placeholder {
+    color: #8e8e93;
+  }
+}
+
+.apple-search-input:focus {
+  background-color: #ffffff; /* 포커스 시 흰색으로 강조 */
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2); /* 은은한 포커스 링 (Apple Blue) */
+}
+/* ---------------------------------------------------- */
+
+/* 💡 리스트 섹션 - 항목에 더 많은 여백과 깔끔한 상태 표시 */
+.list-section {
+  /* 남은 공간을 리스트 섹션들이 균등하게 나누도록 flex-grow를 조정 */
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* 두 번째 리스트에만 약간의 상단 여백 추가 */
+.list-two {
+  margin-top: 10px;
+}
+
+.list-section ul {
+  list-style: none;
+}
+
+.list-section li {
+  padding: 8px 10px; /* 좌우 여백 증가 */
+  margin: 3px 0; /* 항목 간 수직 여백 추가 */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500; /* 미디엄 굵기 */
+  color: #1d1d1f; /* 기본 텍스트 색상 진하게 */
+  border-radius: 6px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+/* 호버 상태: 리스트의 가장 흔한 상호작용 스타일 */
+.list-section li:hover {
+  background-color: #e5e5e5; /* 호버 시 중간 회색 */
+}
+
+/* '선택됨' 상태 시뮬레이션 (클래스 추가 필요) */
+.list-section li.active {
+  background-color: #007aff; /* Apple Blue 배경 */
+  color: #ffffff; /* 흰색 텍스트 */
+  font-weight: 600;
+}
+
+.list-section li.active:hover {
+  background-color: #0077f5; /* 선택된 상태에서도 호버 시 미묘하게 진하게 */
+}
+
+/* ➡️ Main Content (70%) - 더 깔끔한 디자인 */
+.main-content {
+  flex: 1;
+  padding: 40px; /* 메인 콘텐츠 여백 증가 */
+  background-color: #ffffff;
+}
+
+.main-content h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 20px;
+}
+
+.main-content p {
+  font-size: 16px;
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* chart style */
+
+/* ... 기존 CSS 코드 유지 ... */
+
+/* ➡️ Main Content 내부 UI 스타일 */
+.customization-panel {
+  padding-bottom: 20px;
+}
+
+.customization-panel h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 15px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 10px 0 30px 0;
+}
+
+.column-selector-group {
+  display: flex;
+  flex-wrap: wrap; /* 체크박스가 많을 경우 줄바꿈 */
+  gap: 15px 25px; /* 항목 간 간격 */
+}
+
+.column-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #464646;
+  cursor: pointer;
+  user-select: none; /* 텍스트 선택 방지 */
+  font-weight: 500;
+}
+
+/* 기본 체크박스를 숨기고 커스텀 스타일링 (Apple UI에 맞게) */
+.column-label input[type="checkbox"] {
+  /* 기본 모양 숨기기 */
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #d1d1d6;
+  border-radius: 4px;
+  margin-right: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.column-label input[type="checkbox"]:checked {
+  background-color: #007aff; /* Apple Blue */
+  border-color: #007aff;
+}
+
+/* 체크 표시 아이콘 */
+.column-label input[type="checkbox"]:checked::after {
+  content: "\2713"; /* 유니코드 체크 마크 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: white;
+}
+
+/* 차트 컨테이너 스타일 */
+.chart-container {
+  width: 100%;
+  height: 60vh; /* 차트가 표시될 높이 지정 */
+  min-height: 400px;
+}
+
+/* Plotly 라이브러리가 생성하는 캔버스 크기 조정 */
+#plotly-chart {
+  width: 100%;
+  height: 100%;
+}

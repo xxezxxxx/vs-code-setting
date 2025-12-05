@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apple Style UI with Icon</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-content">
+        <section class="section search-section">
+          <div class="search-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input
+              type="text"
+              placeholder="검색어를 입력하세요..."
+              class="apple-search-input"
+            />
+          </div>
+        </section>
+
+        <section class="section list-section list-one">
+          <h3>리스트 1 (주요 목록)</h3>
+          <ul>
+            <li>항목 1</li>
+            <li>항목 2</li>
+            <li>항목 3</li>
+          </ul>
+        </section>
+
+        <section class="section list-section list-two">
+          <h3>리스트 2 (보조 목록)</h3>
+          <ul>
+            <li>추가 항목 A</li>
+            <li>추가 항목 B</li>
+          </ul>
+        </section>
+      </div>
+
+<div class="main-content">
+    
+    <div class="customization-panel">
+        <h2>📊 차트 레이아웃 선택</h2>
+        <div id="layout-selector" class="layout-selector-group">
+            <label class="radio-label">
+                <input type="radio" name="chart-layout" value="3x3" checked> 3x3 (9개 표시)
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="chart-layout" value="2x5"> 2x5 (10개 표시)
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="chart-layout" value="1x2"> 1x2 (2개씩 표시)
+            </label>
+        </div>
+    </div>
+    
+    <hr class="divider">
+
+    <div id="chart-grid-container" class="chart-grid-container">
+        </div>
+</div>
+    </div>
+  </body>
+</html>

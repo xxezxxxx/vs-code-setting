@@ -1,0 +1,30 @@
+.ani-text {
+  text-align: center;
+
+  &:hover {
+    animation-name: movehorizental;
+    animation-duration: 1s;
+  }
+}
+
+@keyframes movehorizental {
+  0% {
+    transform: translateX(0px);
+  }
+
+  33% {
+    transform: translateX(-100px);
+  }
+
+  66% {
+    transform: translateX(100px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.btn {
+
+}

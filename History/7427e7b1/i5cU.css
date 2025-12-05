@@ -1,0 +1,14 @@
+.slide-container {
+  width: 300vw;
+}
+
+.second {}
+
+.slide-box {
+  width: 100vw;
+  float: left;
+}
+
+.slide-box img {
+  width: 100%;
+}

@@ -1,0 +1,42 @@
+@use "reset";
+
+$normal-size: 10px;
+// 변수
+
+%box {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+}
+
+.box-red {
+  background: red;
+  @extend %box;
+}
+
+.box-blue {
+  background: blue;
+  @extend %box;
+}
+
+.box-green {
+  background: green;
+  @extend %box;
+}
+
+@mixin test($hole, $hole2) {
+  font-size: $hole;
+  letter-spacing: $hole2;
+}
+
+h2 {
+  @include test(30px, -1px);
+}
+
+h3 {
+  @include test(20px, -2px);
+}
+
+h4 {
+  @include test(10px, -3px);
+}

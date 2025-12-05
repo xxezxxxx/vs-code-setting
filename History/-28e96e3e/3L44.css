@@ -1,0 +1,260 @@
+/* ==================================== */
+/* 0. CSS 변수 (Custom Properties) - 중앙 관리 영역 */
+/* ==================================== */
+
+:root {
+  /* --- A. 색상 팔레트 (Color Palette) --- */
+  --color-bg-page: #f9f9f9; /* 전체 페이지 배경 (밝은 회색/거의 화이트) */
+  --color-bg-container: #ffffff; /* 좌측 메뉴/컨텐츠 배경 (순수 화이트) */
+  --color-bg-input: #ffffff; /* 입력 필드 및 목록 배경 (순수 화이트) */
+
+  --color-text-main: #222222; /* 기본 텍스트 색상 (짙은 검정) */
+  --color-text-placeholder: #a0a0a0; /* 플레이스홀더 및 보조 텍스트 */
+  --color-text-highlight: #007bff; /* 섹션 라벨 등 강조 텍스트 (파란색 계열) */
+
+  --color-primary-accent: #4caf50; /* 선택/포커스 강조색 (Green Accent) */
+
+  --color-border-subtle: #e2e2e2; /* 은은한 테두리 색상 (매우 밝은 회색) */
+  --color-border-sub: #f0f0f0; /* 서브 경계선, 호버 배경색 (매우 밝은 회색 호버) */
+  --color-scrollbar-thumb: #cccccc; /* 스크롤바 썸 (밝은 회색) */
+  --color-scrollbar-track: #f0f0f0; /* 스크롤바 트랙 (밝은 배경) */
+
+  /* --- B. 디자인 설정 (Design Settings) --- */
+  --design-border-radius: 8px; /* 일반적인 둥근 모서리 */
+  --design-input-radius: 12px; /* 입력 필드/목록 컨테이너 둥근 모서리 */
+
+  /* 그림자 설정 (밝은 모드에 적합) */
+  --design-shadow-main: 0 2px 4px rgba(0, 0, 0, 0.1); /* 입력 필드용 부드러운 그림자 */
+  --design-shadow-container: 0 4px 10px rgba(0, 0, 0, 0.08); /* 컨테이너용 은은하고 깔끔한 그림자 */
+}
+
+/* ==================================== */
+/* 1. 기본 스타일 및 레이아웃 설정 */
+/* ==================================== */
+
+body {
+  background-color: var(--color-bg-page);
+  font-family: Arial, sans-serif;
+  color: var(--color-text-main);
+  margin: 0;
+  padding: 20px;
+}
+
+/* Left/Right 컨테이너를 나란히 배치하기 위한 Wrapper */
+.main-wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start; /* 상단 정렬 */
+}
+
+/* 왼쪽 컨텐츠 컨테이너 (300px 고정 폭) */
+.left-content {
+  width: 300px;
+
+  /* 깔끔하고 이쁜 그림자 적용 */
+  border: 2px solid var(--color-border-subtle);
+  box-shadow: var(--design-shadow-container);
+
+  background: var(--color-bg-container);
+  border-radius: var(--design-border-radius);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 오른쪽 컨텐츠 컨테이너 (차트 영역) */
+.right-content {
+  flex-grow: 1; /* 남은 공간을 모두 차지 */
+  min-width: 600px; /* 최소 너비 지정 */
+  background: var(--color-bg-container);
+  border: 2px solid var(--color-border-subtle);
+  box-shadow: var(--design-shadow-container);
+  border-radius: var(--design-border-radius);
+  padding: 20px;
+  height: 90vh; /* 뷰포트 높이의 90%로 설정 (스크롤 가능하도록) */
+  overflow-y: auto; /* 내용이 많아지면 스크롤 가능 */
+}
+
+/* 섹션 레이블 스타일 */
+.section-label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--color-text-highlight);
+}
+
+/* ==================================== */
+/* 2. EQP 검색 영역 스타일 */
+/* ==================================== */
+
+.search-eqp {
+  width: 100%;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+  height: 40px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--color-text-placeholder);
+  z-index: 10;
+}
+
+/* 입력 필드 스타일 */
+#search-bar {
+  width: 100%;
+  height: 40px;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-main);
+  border-radius: var(--design-input-radius);
+  border: none;
+  outline: none;
+  box-shadow: var(--design-shadow-main);
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  padding: 0 20px 0 50px;
+  box-sizing: border-box;
+}
+
+#search-bar::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+#search-bar:focus {
+  box-shadow: 0 0 0 2px var(--color-primary-accent),
+    0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================================== */
+/* 3. 검색 결과 및 데이터 목록 컨테이너 스타일 */
+/* ==================================== */
+
+.search-results-container {
+  margin-top: 10px;
+  position: static;
+  width: 100%;
+  background-color: var(--color-bg-input);
+  border-radius: var(--design-input-radius);
+  box-shadow: var(--design-shadow-main);
+  max-height: 165px;
+  overflow-y: auto;
+  z-index: 5;
+  display: block;
+}
+
+/* 데이터 목록 (.eqp-data-list)의 컨테이너 */
+.eqp-data-list .search-results-container {
+  position: static;
+  margin-top: 0;
+  border-radius: var(--design-input-radius);
+  max-height: 150px;
+  display: block;
+}
+
+/* 개별 검색 결과 항목 스타일 */
+.search-result-item {
+  display: block;
+  padding: 10px 15px;
+  color: var(--color-text-main);
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: var(--design-border-radius);
+}
+
+/* 마우스 오버 시 스타일 */
+.search-result-item:hover {
+  background-color: var(--color-border-sub);
+}
+
+/* 스크롤바 스타일 */
+.search-results-container::-webkit-scrollbar {
+  width: 8px;
+}
+.search-results-container::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb);
+  border-radius: 4px;
+}
+.search-results-container::-webkit-scrollbar-track {
+  background-color: var(--color-scrollbar-track);
+  border-radius: var(--design-input-radius);
+}
+
+/* ==================================== */
+/* 5. 선택 상태 스타일 */
+/* ==================================== */
+
+.search-result-item.selected {
+  background-color: var(--color-primary-accent);
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: var(--design-border-radius);
+}
+
+.search-result-item:not(.selected):hover {
+  background-color: var(--color-border-sub);
+}
+
+/* ==================================== */
+/* 6. 데이터 입력 필드 스타일 (재사용) */
+/* ==================================== */
+
+#data-bar {
+  width: 100%;
+  height: 40px;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-main);
+  border-radius: var(--design-input-radius);
+  border: 1px solid var(--color-border-subtle);
+  outline: none;
+  box-shadow: var(--design-shadow-main);
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  padding: 0 20px 0 20px;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+/* ==================================== */
+/* 7. EQP 없음 메시지 스타일 */
+/* ==================================== */
+
+.search-result-item.no-click-item {
+  pointer-events: none;
+  opacity: 0.6;
+  background-color: transparent !important;
+  color: var(--color-text-placeholder) !important;
+}
+
+/* ==================================== */
+/* 8. 다중 차트 스타일 (새로 추가/수정된 핵심 부분) */
+/* ==================================== */
+
+/* 차트 컨테이너 (right-content 내부) */
+.chart-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* 차트 간의 세로 간격 */
+  align-items: center; /* 차트를 중앙 정렬 (선택 사항) */
+}
+
+/* 개별 차트를 감싸는 Wrapper (각 차트의 크기 정의) */
+.sub-chart-wrapper {
+  width: 100%;
+  max-width: 95%; /* 컨테이너 대비 최대 너비 (좌우 패딩 고려) */
+  height: 280px; /* 각 차트의 높이 지정 */
+}

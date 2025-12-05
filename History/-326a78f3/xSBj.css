@@ -1,0 +1,77 @@
+:root {
+  --color-border-main: #cccccc;
+  --color-bg-main: #f3f3f3;
+  /* 검색 아이콘 색상을 위해 변수 추가 */
+  --color-icon: #555555;
+  /* --- A. 색상 팔레트 (Color Palette) --- */
+  --color-bg-page: #f9f9f9; /* 전체 페이지 배경 (밝은 회색/거의 화이트) */
+  --color-bg-container: #ffffff; /* 좌측 메뉴/컨텐츠 배경 (순수 화이트) */
+  --color-bg-input: #ffffff; /* 입력 필드 및 목록 배경 (순수 화이트) */
+
+  --color-text-main: #222222; /* 기본 텍스트 색상 (짙은 검정) */
+  --color-text-placeholder: #a0a0a0; /* 플레이스홀더 및 보조 텍스트 */
+  --color-text-highlight: #007bff; /* 섹션 라벨 등 강조 텍스트 (파란색 계열) */
+
+  --color-primary-accent: #4caf50; /* 선택/포커스 강조색 (Green Accent) */
+  --color-toggle-button: #007bff; /* 토글 버튼 색상 */
+
+  --color-border-subtle: #e2e2e2; /* 은은한 테두리 색상 (매우 밝은 회색) */
+  --color-border-sub: #f0f0f0; /* 서브 경계선, 호버 배경색 (매우 밝은 회색 호버) */
+  --color-scrollbar-thumb: #cccccc; /* 스크롤바 썸 (밝은 회색) */
+  --color-scrollbar-track: #f0f0f0; /* 스크롤바 트랙 (밝은 배경) */
+
+  /* --- B. 디자인 설정 (Design Settings) --- */
+  --design-border-radius: 8px; /* 일반적인 둥근 모서리 */
+  --design-input-radius: 12px; /* 입력 필드/목록 컨테이너 둥근 모서리 */
+
+  /* 그림자 설정 (밝은 모드에 적합) */
+  --design-shadow-main: 0 2px 4px rgba(0, 0, 0, 0.1); /* 입력 필드용 부드러운 그림자 */
+  --design-shadow-container: 0 4px 10px rgba(0, 0, 0, 0.08); /* 컨테이너용 은은하고 깔끔한 그림자 */
+}
+
+body {
+  background: rgb(235, 235, 235);
+}
+
+.left-content {
+  width: 20%;
+  border: 2px solid var(--color-border-main);
+  background: var(--color-bg-main);
+  border-radius: 4px;
+  box-shadow: 4px 4px 4px 4px #a1a1a1;
+  padding: 10px;
+}
+
+.search-bar-wrapper {
+  position: relative;
+}
+
+#eqp-search {
+  width: 100%;
+  padding: 8px 10px 8px 35px;
+  border: 1px solid var(--color-border-main);
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  height: 40px;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-main);
+  border-radius: var(--design-input-radius);
+  border: none;
+  outline: none;
+  box-shadow: var(--design-shadow-main);
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  padding: 0 20px 0 50px;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: var(--color-icon);
+  pointer-events: none;
+  font-size: 16px;
+}

@@ -1,0 +1,98 @@
+{
+    "telemetry.machineId": "9f683b556e27b999bae70ff42404953bd1d4fb4e9a1259e0443fa52b1ee71e7d",
+    "telemetry.sqmId": "{F844E0CA-E5EE-4085-8E74-DE0EA8F18A1E}",
+    "telemetry.devDeviceId": "b38a5cd7-1dcf-45f9-b5a3-58e5e73c9082",
+    "backupWorkspaces": {
+        "workspaces": [],
+        "folders": [
+            {
+                "folderUri": "file:///d%3A/Coding/react/shop-project"
+            }
+        ],
+        "emptyWindows": []
+    },
+    "windowControlHeight": 35,
+    "profileAssociations": {
+        "workspaces": {
+            "file:///d%3A/Coding": "__default__profile__",
+            "file:///d%3A/Coding/landing-page": "__default__profile__",
+            "file:///d%3A/Coding/.ez_man": "__default__profile__",
+            "file:///d%3A/Coding/react": "__default__profile__",
+            "file:///d%3A/Coding/react/vite-project": "__default__profile__",
+            "file:///d%3A/Coding/react/shop-project": "__default__profile__"
+        },
+        "emptyWindows": {}
+    },
+    "theme": "vs",
+    "themeBackground": "#ffffff",
+    "windowSplash": {
+        "zoomLevel": 0,
+        "baseTheme": "vs",
+        "colorInfo": {
+            "foreground": "#616161",
+            "background": "#ffffff",
+            "editorBackground": "#ffffff",
+            "titleBarBackground": "#dddddd",
+            "activityBarBackground": "#2c2c2c",
+            "sideBarBackground": "#f3f3f3",
+            "statusBarBackground": "#007acc",
+            "statusBarNoFolderBackground": "#68217a"
+        },
+        "layoutInfo": {
+            "sideBarSide": "left",
+            "editorPartMinWidth": 220,
+            "titleBarHeight": 35,
+            "activityBarWidth": 48,
+            "sideBarWidth": 236,
+            "auxiliaryBarWidth": 0,
+            "statusBarHeight": 22,
+            "windowBorder": false
+        }
+    },
+    "windowsState": {
+        "lastActiveWindow": {
+            "folder": "file:///d%3A/Coding/react/shop-project",
+            "backupPath": "C:\\Users\\ez\\AppData\\Roaming\\Code\\Backups\\afc3a3a1113beb36f27430b88cdaf6b7",
+            "uiState": {
+                "mode": 1,
+                "x": 766,
+                "y": 26,
+                "width": 1110,
+                "height": 866
+            }
+        },
+        "openedWindows": []
+    },
+    "windowSplashWorkspaceOverride": {
+        "layoutInfo": {
+            "sideBarWidth": 236,
+            "auxiliaryBarWidth": 300,
+            "workspaces": {
+                "1ad7fabff674e9df79db0707b8fd0af0": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "0939476bd579d39a866c35b46531878b": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "48bc83616bb0f88ce899671f4221bda7": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "91234ac23cc1c03ff97dcd1fd78afab2": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "e9fcd1312e668a44524638b7873dbdbc": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "39b60394aa93e1ecfc28e38efc0a74da": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,396 @@
+/* Table Viewer base styles */
+.tv-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--tv-bg);
+  color: var(--tv-fg);
+  border: 1px solid var(--tv-border);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.tv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--tv-border);
+}
+
+.tv-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tv-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.tv-button {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--tv-border);
+  background: var(--tv-secondary);
+  color: var(--tv-fg);
+  cursor: pointer;
+}
+.tv-button:hover {
+  filter: brightness(0.98);
+}
+.tv-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.tv-button.primary {
+  background: var(--tv-accent);
+  border-color: var(--tv-accent);
+  color: #fff;
+}
+
+/* Segmented control for TS range */
+.tv-seg {
+  display: inline-flex;
+  background: var(--tv-secondary);
+  border: 1px solid var(--tv-border);
+  border-radius: 8px;
+  padding: 2px;
+}
+.tv-seg-btn {
+  font-size: 12px;
+  padding: 4px 10px;
+  color: var(--tv-fg);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.tv-seg-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+.tv-seg-btn.active {
+  background: var(--tv-accent);
+  color: #fff;
+}
+
+/* TS range bar */
+.tv-tsbar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 100px;
+  width: 100%;
+  max-width: 300px;
+}
+.tv-tstrack {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--tv-secondary);
+  border: 1px solid var(--tv-border);
+  overflow: visible; /* 핸들이 트랙 위아래로 돌출되도록 */
+}
+.tv-tscenter {
+  position: absolute;
+  left: calc(50% - 1px); /* center a 2px line crisply */
+  top: 1px; /* inset to avoid touching border */
+  width: 2px;
+  height: 8px; /* track 10px - 2px inset */
+  background: var(--tv-accent);
+  opacity: 0.7;
+  border-radius: 2px;
+  z-index: 1;
+}
+.tv-tsticks {
+  position: absolute;
+  left: 0;
+  top: 0px; /* inset ticks from border */
+  width: 100%;
+  height: 8px; /* track 10px - 2px inset */
+  pointer-events: none; /* 슬라이더 조작 방해 X */
+  z-index: 1;
+}
+.tv-tstick {
+  position: absolute;
+  top: 0; /* inside tick container */
+  width: 2px;
+  height: 7px; /* match tick container height */
+  background: var(--tv-border);
+  opacity: 0.8;
+}
+.tv-tstick.major {
+  /* 1d(major) 틱도 일반 틱과 동일 톤으로 표시 (파란 포인트 제거) */
+  background: var(--tv-border);
+  opacity: 0.8;
+}
+.tv-tstick.passed-left,
+.tv-tstick.passed-right {
+  /* 넘어간 포인트는 테마색의 약한 톤으로 표시 */
+  background: var(--tv-accent);
+  opacity: 0.45;
+}
+.tv-tstick.endpoint {
+  /* 엔드포인트(최대 범위) 선은 숨기고 라벨만 남김 */
+  background: transparent !important;
+  width: 0 !important;
+}
+.tv-tstick .tv-tstick-label {
+  position: absolute;
+  top: auto;
+  bottom: -14px; /* 라벨을 트랙 하단으로 */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: var(--tv-fg);
+  opacity: 0.75;
+  white-space: nowrap;
+}
+.tv-tsfill-left {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-100%);
+  top: 0;
+  height: 100%;
+  background: var(--tv-accent);
+  opacity: 0.25;
+  width: 0%;
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+  z-index: 1;
+}
+.tv-tsfill-right {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  background: var(--tv-accent);
+  opacity: 0.25;
+  width: 0%;
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+  z-index: 1;
+}
+.tv-tstrack.drag-left .tv-tsfill-left {
+  opacity: 0.55;
+}
+.tv-tstrack.drag-right .tv-tsfill-right {
+  opacity: 0.55;
+}
+
+/* Dragging: also tint the active thumb to accent */
+.tv-tstrack.drag-left .tv-tsslider.left::-webkit-slider-thumb {
+  background: var(--tv-accent);
+  border-color: var(--tv-accent);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.tv-tstrack.drag-right .tv-tsslider.right::-webkit-slider-thumb {
+  background: var(--tv-accent);
+  border-color: var(--tv-accent);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.tv-tstrack.drag-left .tv-tsslider.left::-moz-range-thumb {
+  background: var(--tv-accent);
+  border-color: var(--tv-accent);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.tv-tstrack.drag-right .tv-tsslider.right::-moz-range-thumb {
+  background: var(--tv-accent);
+  border-color: var(--tv-accent);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.tv-tsslider {
+  position: absolute;
+  left: 0;
+  top: -14px; /* 더 큰 핸들이 트랙 위아래로 돌출되도록 */
+  width: 100%;
+  height: 36px; /* 터치/마우스 조작이 쉬운 높이 */
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  z-index: 2;
+  touch-action: none;
+}
+.tv-tsslider.left {
+  width: 50%;
+  left: 0;
+}
+.tv-tsslider.right {
+  width: 50%;
+  left: 50%;
+}
+.tv-tsslider::-webkit-slider-runnable-track {
+  height: 10px;
+  background: transparent;
+}
+.tv-tsslider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px; /* 네모난 핸들 */
+  height: 26px; /* 트랙을 위아래로 충분히 넘도록 */
+  margin-top: -8px; /* 트랙(10px) 중앙 정렬 */
+  border-radius: 6px; /* 살짝 둥근 모서리의 직사각형 */
+  border: 2px solid var(--tv-accent);
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+.tv-tsslider::-moz-range-track {
+  height: 10px;
+  background: transparent;
+}
+.tv-tsslider::-moz-range-thumb {
+  width: 18px;
+  height: 26px;
+  border-radius: 6px;
+  border: 2px solid var(--tv-accent);
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+.tv-tslabels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--tv-fg);
+  opacity: 0.9;
+  position: relative; /* 중앙 라벨을 고정 배치하기 위함 */
+}
+.tv-tslabels .center {
+  opacity: 0.85;
+  line-height: 1.1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  pointer-events: none; /* 드래그 조작 방해 방지 */
+}
+.tv-tslabels .center-time {
+  font-weight: 400;
+}
+.tv-tslabels .center-date {
+  opacity: 1;
+  font-weight: 400;
+}
+
+.tv-content {
+  overflow: auto;
+}
+
+.tv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.tv-table th,
+.tv-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--tv-border);
+  text-align: left;
+}
+.tv-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--tv-bg);
+  z-index: 1;
+}
+.tv-table tbody tr:nth-child(odd) {
+  background: var(--tv-row-alt);
+}
+.tv-table tbody tr:hover {
+  background: var(--tv-hover);
+}
+
+/* --- Overrides for alignment and label spacing --- */
+/* Ensure ticks remain within the track */
+.tv-tstick {
+  top: 0;
+  height: 10px;
+}
+/* Push center ref label a bit lower */
+.tv-tslabels .center {
+  top: 4px;
+}
+/* Stronger emphasis for date/time */
+.tv-tslabels .center-time {
+  font-weight: 600;
+}
+.tv-tslabels .center-date {
+  font-weight: 700;
+  opacity: 1;
+}
+
+/* Floating value labels that follow handles */
+.tv-tsdrag-label {
+  position: absolute;
+  top: -36px; /* above the track */
+  font-size: 11px;
+  line-height: 1;
+  background: var(--tv-secondary);
+  color: var(--tv-fg);
+  border: 1px solid var(--tv-border);
+  border-radius: 6px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  z-index: 5; /* above tsref label (z-index: 4) */
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+/* Center ref TS top label */
+.tv-tsref-label {
+  position: absolute;
+  top: -42px; /* simple text, kept higher than lines */
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: transparent; /* no background card */
+  color: var(--tv-fg);
+  border: 0; /* no border */
+  padding: 0; /* no padding */
+  font-size: 11px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: none; /* no shadow */
+  z-index: 4;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+.tv-tsref-label .center-time {
+  font-weight: 400;
+}
+.tv-tsref-label .center-date {
+  font-weight: 400;
+}
+
+/* Idle fade-out for top labels */
+.tv-tstrack.labels-idle .tv-tsdrag-label,
+.tv-tstrack.labels-idle .tv-tsref-label {
+  opacity: 0;
+}
+
+/* --- Layering (z-index) overrides to ensure clear stacking --- */
+.tv-tstrack {
+  position: relative;
+}
+.tv-tsfill-left,
+.tv-tsfill-right,
+.tv-tsticks,
+.tv-tscenter {
+  z-index: 1;
+}
+.tv-tsslider {
+  z-index: 3;
+}
+.tv-tsref-label {
+  z-index: 5;
+}
+.tv-tsdrag-label {
+  z-index: 6;
+}

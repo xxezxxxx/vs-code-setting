@@ -1,0 +1,33 @@
+.profile {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.abcdef {
+  font-size: 20px;
+  color: rgb(255, 0, 0);
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+#special {
+  text-align: center;
+  color: bisque;
+}
+
+.content {
+  text-align: center;
+  color: aqua;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  margin: 100px;
+  margin-left: 200px;
+  box-shadow: 100px;
+  color: white;
+  background-color: blue;
+}

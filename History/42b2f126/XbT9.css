@@ -1,0 +1,184 @@
+/* 기본 리셋 및 폰트 설정 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", "Noto Sans KR", sans-serif; /* Google Fonts와 한글 폰트 조합 */
+  background-color: #f4f5f8; /* 아주 연한 배경색 (애플/토스 스타일) */
+  color: #1a1a1a;
+}
+
+/* 대시보드 전체 컨테이너 (Flexbox를 사용하여 30/70 분할) */
+.dashboard-container {
+  display: flex;
+  height: 100vh; /* 화면 전체 높이 사용 */
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* ================================== */
+/* 30% Left-Content (Sidebar) Style */
+/* ================================== */
+.left-content {
+  position: relative; /* 토글 버튼 위치 지정을 위해 필요 */
+  width: 30%; /* 기본 30% */
+  min-width: 250px;
+  background-color: #ffffff; /* 흰색 배경 */
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
+  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+/* Left-Content Collapsed State */
+.left-content.collapsed {
+  width: 0;
+  padding: 20px 0; /* 패딩을 줄여서 숨김 */
+  min-width: 0;
+  transform: translateX(-100%); /* 왼쪽으로 완전히 숨김 */
+}
+
+/* Sidebar Toggle Button Style */
+.sidebar-toggle {
+  position: absolute;
+  top: 50%; /* 중간에 위치 */
+  right: -15px; /* left-content의 오른쪽 경계에 걸치도록 */
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /* 원형 버튼 */
+  border: none;
+  background-color: #ffffff;
+  color: #555555;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  z-index: 10; /* 다른 요소 위에 표시 */
+  transition: background-color 0.2s;
+}
+
+.left-content.collapsed .sidebar-toggle {
+  right: -30px; /* 숨겨졌을 때 버튼을 밖으로 노출 */
+  /* right-content가 100%를 차지할 때 버튼이 보이도록 위치 조정이 필요할 수 있습니다. */
+}
+
+/* Search Bar Style */
+.search-section {
+  margin-bottom: 30px;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0; /* 구글/애플 검색창 느낌의 연한 회색 배경 */
+  border-radius: 12px; /* 애플/토스 스타일의 둥근 모서리 */
+  padding: 8px 15px;
+}
+
+.search-icon {
+  color: #888;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.search-input-wrapper input {
+  flex-grow: 1;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 15px;
+  color: #1a1a1a;
+}
+.search-input-wrapper input::placeholder {
+  color: #aaa;
+}
+
+/* List Section Style */
+.list-section {
+  margin-bottom: 25px;
+}
+
+.list-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #555; /* 부제목은 조금 연한 색상 */
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-left: 5px; /* 리스트와 정렬 맞추기 */
+}
+
+.list-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.list-section li {
+  font-size: 15px;
+  color: #1a1a1a;
+  padding: 8px 5px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.list-section li:hover {
+  background-color: #f0f0f0; /* 호버 시 연한 배경 */
+}
+
+/* ================================== */
+/* 70% Right-Content Style */
+/* ================================== */
+.right-content {
+  flex-grow: 1; /* 나머지 공간 70% 차지 */
+  padding: 20px;
+  overflow-y: auto; /* 내용이 많아지면 스크롤 가능 */
+  transition: width 0.3s ease-in-out;
+}
+
+.left-content.collapsed + .right-content {
+  width: 100%; /* left-content가 닫히면 100%를 차지하도록 조정 (JavaScript와 함께 작동) */
+}
+
+.right-content header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 25px;
+}
+
+/* Chart Grid (2x2 Layout) */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2열로 배치 */
+  gap: 20px; /* 카드 간 간격 */
+}
+
+.chart-card {
+  background-color: #ffffff;
+  border-radius: 16px; /* 토스/애플 스타일의 둥근 카드 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+  padding: 20px;
+  height: 300px; /* 차트 영역 높이 지정 */
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-card .card-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.chart-area {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9; /* 차트 영역을 위한 연한 배경 */
+  border-radius: 10px;
+}
+
+.placeholder {
+  color: #bbb;
+  font-style: italic;
+}

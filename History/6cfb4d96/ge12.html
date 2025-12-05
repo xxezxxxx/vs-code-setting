@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <style>
+      .black-bg {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 5;
+        padding: 30px;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 1s;
+      }
+      .white-bg {
+        background: white;
+        border-radius: 5px;
+        padding: 30px;
+      }
+      .show {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+
+        <form>
+          <div class="my-3">
+            <input type="text" class="form-control" id="email" />
+          </div>
+          <div class="my-3">
+            <input type="password" class="form-control" id="login-pw" />
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit">
+            전송
+          </button>
+          <button type="button" class="btn btn-danger" id="close">닫기</button>
+        </form>
+      </div>
+    </div>
+    <button id="login">로그인</button>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $("#login").on("click", function () {
+        $(".black-bg").addClass("show");
+      });
+
+      $("#close").on("click", function () {
+        $(".black-bg").removeClass("show");
+      });
+    </script>
+
+    <script>
+      if (1 == 3) {
+        console.log("맞아요1");
+      } else if (3 == 3) {
+        console.log("맞아요2");
+      }
+
+      // if (3 > 1) {
+      //   console.log("안녕");
+      // } else {
+      //   console.log("바보");
+      // }
+
+      $("form").on("submit", function () {
+        var inputID = document.getElementById("email").value;
+        var inputPW = document.getElementById("login-pw").value;
+        // if ($("#email").val() == "" || $("#login-pw").val() == "") {
+
+        //   //   alert("ID or PW 입력 안함");
+        //   //   e.preventDefault();
+        //   // } else if ($("#login-pw").val().length < 6) {
+        //   //   alert("PW가 6자 미만임");
+        //   //   e.preventDefault();
+        //   // } else {
+        //   //   alert("OK !");
+        // }
+        if (/\S+@\S+\.\S+/.test(inputID)) {
+          alert("이메일 형식 맞음");
+        } else {
+          alert("이메일 형식 아님");
+        }
+        if (/[A-Z]/.test(inputPW)) {
+          alert("비번에 영어대문자 있음");
+        } else {
+          alert("비번에 대문자 없음");
+        }
+      });
+    </script>
+
+    <script>
+      document.getElementById("email").addEventListener("change", function () {
+        console.log("이메일 안녕");
+      });
+
+      if (1 == 2) {
+        console.log("안녕");
+      }
+
+      document
+        .getElementsByClassName("black-bg")
+        .addEventListener("click", function () {
+          document.getElementsByClassName("black-bg").removeClass("show");
+        });
+    </script>
+  </body>
+</html>

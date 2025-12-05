@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="alert-box" id="alert">
+      <p class="title">알림창임</p>
+      <button id="close" onclick="test01('none')">닫기</button>
+    </div>
+    <button onclick="test01('flex', '아이디 입력하셈')">버튼1</button>
+    <button onclick="test01('flex', '비번 입력하셈')">버튼2</button>
+
+    <script>
+      document.getElementById("close").addEventListener("click", );
+
+      function test01(멍구, 멍구2) {
+        document.getElementById("alert").style.display = 멍구;
+        document.getElementsByClassName("title").innerHTML = 멍구2;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+progress::-webkit-progress-bar {
+  appearance: none;
+  background: red;
+  color: red;
+}
